@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/reactivesw/category.svg?branch=master)](https://travis-ci.org/reactivesw/category)
 # 1. Name
 Category service
 
@@ -9,8 +10,6 @@ Category service
 ## 4.1 Build
 
 ## 4.2 Run
-
-
 
 # 5. Features
 
