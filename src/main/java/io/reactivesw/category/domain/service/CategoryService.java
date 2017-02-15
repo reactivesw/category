@@ -8,8 +8,8 @@ import io.reactivesw.category.application.model.QueryConditions;
 import io.reactivesw.category.application.model.mapper.CategoryMapper;
 import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.infrastructure.repository.CategoryRepository;
-import io.reactivesw.category.infrastructure.util.UpdateAction;
-import io.reactivesw.category.infrastructure.util.Updater;
+import io.reactivesw.category.infrastructure.update.UpdateAction;
+import io.reactivesw.category.infrastructure.update.UpdaterService;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
 import io.reactivesw.category.infrastructure.validator.CategoryVersionValidator;
 import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator;
@@ -46,7 +46,7 @@ public class CategoryService {
    * category update service.
    */
   @Autowired
-  private transient Updater updateService;
+  private transient UpdaterService updateService;
 
   /**
    * Create category.

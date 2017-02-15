@@ -1,4 +1,4 @@
-package io.reactivesw.category.infrastructure.util;
+package io.reactivesw.category.infrastructure.update;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

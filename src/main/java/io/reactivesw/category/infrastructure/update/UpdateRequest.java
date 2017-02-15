@@ -1,4 +1,4 @@
-package io.reactivesw.category.infrastructure.util;
+package io.reactivesw.category.infrastructure.update;
 
 
 import lombok.Data;

@@ -20,7 +20,7 @@ public interface CategoryRepository extends JpaRepository<Category, String>,
    * @param ancestorId the ancestorId
    * @return the list
    */
-  @Query(value = "select c from CategoryEntity c where ?1 member of c.ancestors")
+  @Query(value = "select c from Category c where ?1 member of c.ancestors")
   List<Category> querySubCategoriesByAncestorId(String ancestorId);
 
   /**
@@ -38,7 +38,7 @@ public interface CategoryRepository extends JpaRepository<Category, String>,
    */
   @Modifying
   @Transactional
-  @Query(value = "delete from CategoryEntity c where c.id in ?1")
+  @Query(value = "delete from Category c where c.id in ?1")
   void deleteCategoryById(List<String> Ids);
 
   /**

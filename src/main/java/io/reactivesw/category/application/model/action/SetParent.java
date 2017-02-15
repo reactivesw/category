@@ -1,6 +1,6 @@
 package io.reactivesw.category.application.model.action;
 import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
-import io.reactivesw.category.infrastructure.util.UpdateAction;
+import io.reactivesw.category.infrastructure.update.UpdateAction;
 import io.reactivesw.model.Reference;
 import lombok.Getter;
 import lombok.Setter;
