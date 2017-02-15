@@ -11,8 +11,6 @@ Category service
 
 ## 4.2 Run
 
-
-
 # 5. Features
 
 ## 5.1, The techniques we choose
