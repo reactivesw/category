@@ -6,7 +6,7 @@ import io.reactivesw.category.application.model.PagedQueryResult;
 import io.reactivesw.category.application.model.QueryConditions;
 import io.reactivesw.category.domain.service.CategoryService;
 import io.reactivesw.category.infrastructure.Router;
-import io.reactivesw.category.infrastructure.util.UpdateRequest;
+import io.reactivesw.category.infrastructure.update.UpdateRequest;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
