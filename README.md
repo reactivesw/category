@@ -1,8 +1,5 @@
+# Category service
 [![Build Status](https://travis-ci.org/reactivesw/category.svg?branch=master)](https://travis-ci.org/reactivesw/category)
-# 1. Name
-Category service
-
-# 2. Repo status
  
 # 3, Introduction
 
