@@ -11,7 +11,7 @@ import java.util.List;
  */
 public final class CategoryUtils {
   /**
-   * Instantiates a new CategoryView util.
+   * Instantiates a new CategoryView update.
    */
   private CategoryUtils() {
   }
