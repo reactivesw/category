@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: category
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: category
+    spec:
+      containers:
+      - name: category
+        image: reactivesw/category:0.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+        env:
+        - name: spring_datasource_url
+          value: jdbc:postgresql://pg-data/reactivesw
+        - name: spring_cloud_config_uri
+          value: http://reactivesw-config
