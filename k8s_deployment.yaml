@@ -7,16 +7,18 @@ spec:
   template:
     metadata:
       labels:
-        app: category
+        name: category
     spec:
       containers:
       - name: category
         image: reactivesw/category:0.0.1
         imagePullPolicy: Always
         ports:
-        - containerPort: 8082
+        - containerPort: 80
         env:
+        - name: server_port
+          value: "80"
         - name: spring_datasource_url
-          value: jdbc:postgresql://pg-data/reactivesw
+          value: jdbc:postgresql://pg-data/category
         - name: spring_cloud_config_uri
           value: http://reactivesw-config
