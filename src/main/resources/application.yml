@@ -8,7 +8,7 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5452/reactivesw
+    url: jdbc:postgresql://localhost:5432/reactivesw
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
