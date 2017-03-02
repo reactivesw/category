@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by umasuo on 17/3/2.
  */
 @Component
-public class CategoryExceptionHandler implements ExceptionHandler, HandlerExceptionResolver {
+public class CategoryExceptionHandler extends ExceptionHandler implements HandlerExceptionResolver {
 
   private static Logger logger = LoggerFactory.getLogger(CategoryExceptionHandler.class);
 
