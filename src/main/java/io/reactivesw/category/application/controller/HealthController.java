@@ -1,5 +1,7 @@
 package io.reactivesw.category.application.controller;
 
+import io.reactivesw.category.infrastructure.Router;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Configuration
-public class IndexController {
+public class HealthController {
 
   /**
    * service name.
@@ -23,7 +25,7 @@ public class IndexController {
    *
    * @return service name.
    */
-  @GetMapping("/")
+  @GetMapping(Router.CATEGORY_HELTH_CHECK)
   public String index() {
     return serviceName + ", system time: " + System.currentTimeMillis();
   }
