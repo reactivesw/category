@@ -10,29 +10,53 @@ import lombok.Setter;
 @Setter
 public class QueryConditions {
 
-  String expandId;
+  /**
+   * The Expand id.
+   */
+  private String expandId;
 
-  Integer version;
+  /**
+   * The Version.
+   */
+  private Integer version;
 
   /**
    * name(en="Pro T-Shirt")
    */
-  String where;
+  private String where;
 
   /**
    * name.em
    */
-  String sort;
+  private String sort;
 
-  String sortOrder;
+  /**
+   * The Sort order.
+   */
+  private String sortOrder;
 
-  String page;
+  /**
+   * The Page.
+   */
+  private String page;
 
-  String perPage;
+  /**
+   * The Per page.
+   */
+  private String perPage;
 
-  String expand;
+  /**
+   * The Expand.
+   */
+  private String expand;
 
-  Boolean staged;
+  /**
+   * The Staged.
+   */
+  private Boolean staged;
 
-  Boolean stagedId;
+  /**
+   * The Staged id.
+   */
+  private Boolean stagedId;
 }

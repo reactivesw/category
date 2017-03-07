@@ -26,19 +26,19 @@ public class LocalizedStringValue {
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid2")
   @Column(name = "id")
-  protected String id;
+  private String id;
 
   /**
    * language.
    */
   @Column
-  protected String language;
+  private String language;
 
   /**
    * text value.
    */
   @Column(columnDefinition = "text")
-  protected String text;
+  private String text;
 
   /**
    * Instantiates a new Localized string entity.

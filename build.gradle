@@ -56,9 +56,15 @@ dependencies {
     //lombok
     compile('org.projectlombok:lombok:1.16.12')
 
+    //for @CreatedDate and @LastModifiedDate
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5')
+
     //security, like password encoder.
     compile('org.springframework.security:spring-security-crypto')
     compile('com.google.api-client:google-api-client:1.22.0')
+
+//    compile project(':base')//depend on base project. for local build.
+    compile("io.reactivesw:commons:0.0.1")
 
     //spring boot test
     testCompile('org.springframework.boot:spring-boot-starter-test:1.4.0.RELEASE')
@@ -71,9 +77,6 @@ dependencies {
 
     //spock spring
     testCompile('org.spockframework:spock-spring:1.0-groovy-2.4')
-
-//    compile project(':base')//depend on base project. for local build.
-    compile("io.reactivesw:commons:0.0.1")
 }
 
 //apply from: 'test_coverage.gradle'

@@ -66,6 +66,13 @@ public final class LocalizedStringMapper {
     return localizedStringEntities;
   }
 
+
+  /**
+   * Model to entity default null set.
+   *
+   * @param localizedString the localized string
+   * @return the set
+   */
   public static Set<LocalizedStringValue> modelToEntityDefaultNull(LocalizedString
                                                                        localizedString) {
     Set<LocalizedStringValue> localizedStringEntities = null;

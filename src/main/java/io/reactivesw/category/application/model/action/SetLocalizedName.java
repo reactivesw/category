@@ -14,6 +14,10 @@ public class SetLocalizedName implements UpdateAction {
    */
   private LocalizedString name;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return null;

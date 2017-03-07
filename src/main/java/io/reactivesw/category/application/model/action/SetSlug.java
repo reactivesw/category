@@ -22,6 +22,10 @@ public class SetSlug implements UpdateAction {
   @Pattern(regexp = "[-a-zA-Z0-9_]{2,256}", message = "category slug can not match")
   private String slug;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return CategoryActionUtils.SET_SLUG;

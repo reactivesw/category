@@ -17,6 +17,10 @@ public class SetName implements UpdateAction {
    */
   private LocalizedString name;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return CategoryActionUtils.SET_NAME;

@@ -16,6 +16,10 @@ public class SetOrderHint implements UpdateAction {
    */
   private String orderHint;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return CategoryActionUtils.SET_ORDER_HINT;

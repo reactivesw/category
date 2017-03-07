@@ -17,6 +17,10 @@ public class SetMetaDescription implements UpdateAction {
    */
   private LocalizedString metaDescription;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return CategoryActionUtils.SET_META_DESCRIPTION;

@@ -17,6 +17,10 @@ public class SetMetaKeywords implements UpdateAction {
    */
   private LocalizedString metaKeywords;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return CategoryActionUtils.SET_META_KEYWORD;

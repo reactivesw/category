@@ -16,6 +16,10 @@ public class SetLocalizedDescription implements UpdateAction {
    */
   private LocalizedString description;
 
+  /**
+   * get update service name.
+   * @return update service name
+   */
   @Override
   public String getActionName() {
     return null;
