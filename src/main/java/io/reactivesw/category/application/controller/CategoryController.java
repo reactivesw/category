@@ -8,9 +8,7 @@ import io.reactivesw.category.domain.service.CategoryService;
 import io.reactivesw.category.infrastructure.Router;
 import io.reactivesw.category.infrastructure.update.UpdateRequest;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,6 @@ import javax.validation.Valid;
 /**
  * Created by Davis on 16/11/18.
  */
-@ApiModel
 @RestController
 public class CategoryController {
   /**
@@ -49,10 +46,8 @@ public class CategoryController {
    * @param categoryDraft the draft
    * @return the category
    */
-  @ApiOperation(value = "Create CategoryEntity")
   @PostMapping(Router.CATEGORY_ROOT)
   public CategoryView createCategory(@RequestBody
-                                     @ApiParam(value = "CategoryEntity Draft", required = true)
                                      @Valid CategoryDraft categoryDraft) {
     LOG.debug("create category : {}", categoryDraft.toString());
 
@@ -70,14 +65,9 @@ public class CategoryController {
    *
    * @param version the version
    */
-  @ApiOperation(value = "Delete CategoryEntity By Id")
   @DeleteMapping(value = Router.CATEGORY_WITH_ID)
-  public void deleteCategory(@PathVariable(value = Router.CATEGORY_ID)
-                             @ApiParam(value = "CategoryEntity ID", required = true)
-                                 String id,
-                             @RequestParam
-                             @ApiParam(value = "CategoryEntity Version", required = true)
-                                 Integer version) {
+  public void deleteCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
+                             @RequestParam Integer version) {
     LOG.debug("enter deleteCategory, id is {}, version is {}", id, version);
 
     categoryService.deleteCategory(id, version);
@@ -92,15 +82,9 @@ public class CategoryController {
    * @param updateRequest the fields
    * @return the category
    */
-  @ApiOperation(value = "Update CategoryEntity")
   @PutMapping(Router.CATEGORY_WITH_ID)
-  public CategoryView updateCategory(@PathVariable(value = Router.CATEGORY_ID)
-                                     @ApiParam(value = "CategoryEntity ID", required = true)
-                                         String id,
-                                     @RequestBody
-                                     @ApiParam(value = "CategoryEntity Update Fields", required =
-                                         true)
-                                     @Valid UpdateRequest updateRequest) {
+  public CategoryView updateCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
+                                     @RequestBody @Valid UpdateRequest updateRequest) {
     LOG.debug("enter updateCategory,id is {}, update request is {}", id, updateRequest.toString());
 
     CategoryView result = categoryService.updateCategory(id, updateRequest.getVersion(),
@@ -117,11 +101,8 @@ public class CategoryController {
    * @param id the id
    * @return the category by id
    */
-  @ApiOperation(value = "Get CategoryEntity By Id")
   @GetMapping(Router.CATEGORY_WITH_ID)
-  public CategoryView getCategoryById(@PathVariable(value = Router.CATEGORY_ID)
-                                      @ApiParam(value = "CategoryEntity ID", required = true)
-                                          String id) {
+  public CategoryView getCategoryById(@PathVariable(value = Router.CATEGORY_ID) String id) {
     LOG.debug("enter getCategoryById, id is {}", id);
     CategoryView category = categoryService.getCategoryById(id);
     LOG.debug("end getCategoryById, get category : {}", category.toString());
@@ -133,7 +114,6 @@ public class CategoryController {
    *
    * @return the list
    */
-  @ApiOperation(value = "Get Categories")
   @GetMapping(Router.CATEGORY_ROOT)
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions query) {
     LOG.debug("enter queryCategories, query parameters: {}", query.toString());
