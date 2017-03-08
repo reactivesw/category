@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,6 +31,7 @@ import javax.persistence.Version;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "category")
+@EntityListeners(AuditingEntityListener.class)
 public class Category {
 
   /**
@@ -38,21 +41,21 @@ public class Category {
   @GeneratedValue(generator = "uuid")
   @GenericGenerator(name = "uuid", strategy = "uuid2")
   @Column(name = "id")
-  protected String id;
+  private String id;
 
   /**
    * The Created at.
    */
   @CreatedDate
   @Column(name = "created_at")
-  protected ZonedDateTime createdAt;
+  private ZonedDateTime createdAt;
 
   /**
    * The Last modified at.
    */
   @LastModifiedDate
   @Column(name = "last_modified_at")
-  protected ZonedDateTime lastModifiedAt;
+  private ZonedDateTime lastModifiedAt;
 
   /**
    * version.

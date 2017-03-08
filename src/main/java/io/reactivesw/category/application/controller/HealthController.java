@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 public class HealthController {
 
-  /**
-   * service name.
-   */
-  @Value("${spring.controller.name}")
-  private transient String serviceName;
-
-  /**
-   * this api is used for health check.
-   *
-   * @return service name.
-   */
-  @GetMapping(Router.CATEGORY_HELTH_CHECK)
-  public String index() {
-    return serviceName + ", system time: " + System.currentTimeMillis();
-  }
+//  /**
+//   * service name.
+//   */
+//  @Value("${spring.controller.name}")
+//  private transient String serviceName;
+//
+//  /**
+//   * this api is used for health check.
+//   *
+//   * @return service name.
+//   */
+//  @GetMapping(Router.CATEGORY_HELTH_CHECK)
+//  public String index() {
+//    return serviceName + ", system time: " + System.currentTimeMillis();
+//  }
 }
