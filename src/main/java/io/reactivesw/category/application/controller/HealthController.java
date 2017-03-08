@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by umasuo on 17/2/21.
  */
 @RestController
-@Configuration
 public class HealthController {
 
   /**
    * service name.
    */
-  @Value("${spring.controller.name}")
+  @Value("${spring.application.name}")
   private transient String serviceName;
 
   /**
@@ -26,7 +25,7 @@ public class HealthController {
    * @return service name.
    */
   @GetMapping(Router.CATEGORY_HELTH_CHECK)
-  public String index() {
+  public String healthCheck() {
     return serviceName + ", system time: " + System.currentTimeMillis();
   }
 }
