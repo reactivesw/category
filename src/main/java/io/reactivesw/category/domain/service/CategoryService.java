@@ -159,6 +159,7 @@ public class CategoryService {
 
     PagedQueryResult<CategoryView> pagedQueryResult = new PagedQueryResult<>();
     pagedQueryResult.setResults(result);
+    pagedQueryResult.setCount(result.size());
 
     return pagedQueryResult;
   }
