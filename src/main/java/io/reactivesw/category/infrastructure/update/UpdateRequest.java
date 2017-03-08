@@ -38,6 +38,6 @@ public class UpdateRequest {
    * @return list of UpdateAction
    */
   public List<UpdateAction> getActions() {
-    return actions.parallelStream().map(a -> (UpdateAction) a).collect(Collectors.toList());
+    return actions.stream().map(a -> (UpdateAction) a).collect(Collectors.toList());
   }
 }

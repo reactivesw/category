@@ -1,11 +1,12 @@
 package io.reactivesw.category.domain.service.update;
 
-import io.reactivesw.category.application.model.action.SetLocalizedDescription;
+import io.reactivesw.category.application.model.action.SetDescription;
 import io.reactivesw.category.application.model.mapper.LocalizedStringMapper;
 import io.reactivesw.category.domain.model.Category;
-import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
 import io.reactivesw.category.infrastructure.update.UpdateAction;
+import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
 import io.reactivesw.model.Updater;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,7 +21,7 @@ public class SetDescriptionService implements Updater<Category, UpdateAction> {
    */
   @Override
   public void handle(Category entity, UpdateAction action) {
-    SetLocalizedDescription setLocalizedDescription = (SetLocalizedDescription) action;
+    SetDescription setLocalizedDescription = (SetDescription) action;
     entity.setDescription(LocalizedStringMapper.modelToEntityDefaultNew(setLocalizedDescription
         .getDescription()));
   }
