@@ -19,7 +19,6 @@ public class SetName implements UpdateAction {
    * name.
    */
   @NotNull
-  @Size(min = 1, max = 256)
   private LocalizedString name;
 
   /**
