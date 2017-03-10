@@ -1,5 +1,7 @@
 package io.reactivesw.category.application.controller;
 
+import com.google.common.collect.Maps;
+
 import io.reactivesw.category.infrastructure.Router;
 
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 import sun.net.www.http.HttpClient;
 
@@ -38,11 +42,6 @@ public class HealthController {
   public String healthCheck() {
     LOG.debug("enter healthCheck");
 
-    RestTemplate restTemplate = new RestTemplate();
-    Object object = restTemplate.getForObject("https://api.github.com", Object.class);
-
-    LOG.debug("get response : {}", object.toString());
-
-    return serviceName + ", system time: " + System.currentTimeMillis() + " - " + object.toString();
+    return serviceName + ", system time: " + System.currentTimeMillis();
   }
 }
