@@ -13,7 +13,7 @@ TODO
 | name | LocalizedString | required, NotNull |
 | description | LocalizedString | |
 | parent | Reference | |
-| slug | String | required, NotNull, pattern is "[-a-zA-Z0-9_]{2,256}" |
+| slug | String | required, NotNull, Allowed are alphabetic, numeric, underscore (_) and hyphen (-) characters. Maximum size is 256, Minimum size is 2 |
 | orderHint | String | |
 | externalId | String | |
 | metaTitle | LocalizedString | |
