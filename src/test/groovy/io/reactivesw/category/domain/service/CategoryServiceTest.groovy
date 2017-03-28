@@ -1,4 +1,4 @@
-package io.reactivesw.category
+package io.reactivesw.category.domain.service
 
 import com.google.common.collect.Lists
 import io.reactivesw.category.application.model.CategoryDraft
@@ -7,7 +7,6 @@ import io.reactivesw.category.application.model.action.SetName
 import io.reactivesw.category.application.model.action.SetSlug
 import io.reactivesw.category.domain.model.Category
 import io.reactivesw.category.domain.model.LocalizedStringValue
-import io.reactivesw.category.domain.service.CategoryService
 import io.reactivesw.category.infrastructure.repository.CategoryRepository
 import io.reactivesw.category.infrastructure.update.UpdateAction
 import io.reactivesw.category.infrastructure.update.UpdaterService
@@ -15,8 +14,8 @@ import io.reactivesw.category.infrastructure.util.ReferenceTypes
 import io.reactivesw.exception.AlreadyExistException
 import io.reactivesw.exception.ConflictException
 import io.reactivesw.exception.NotExistException
-import io.reactivesw.model.Reference
 import io.reactivesw.model.LocalizedString
+import io.reactivesw.model.Reference
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
 

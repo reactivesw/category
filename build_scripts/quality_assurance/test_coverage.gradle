@@ -1,6 +1,7 @@
 // For code coverage
 apply plugin: 'com.palantir.jacoco-coverage'
 
+// For groovy plugin
 apply plugin: "groovy"
 
 dependencies {
@@ -9,6 +10,23 @@ dependencies {
 
     //spock core
     testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
+
+    // for mock non-interface
+    testCompile('cglib:cglib-nodep:3.2.5')
+}
+
+dependencies {
+    //spring boot test
+    testCompile('org.springframework.boot:spring-boot-starter-test:1.4.0.RELEASE')
+
+    //groovy for spock
+    testCompile('org.codehaus.groovy:groovy-all:2.4.1')
+
+    //spock core
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
+
+    //spock spring
+    testCompile('org.spockframework:spock-spring:1.0-groovy-2.4')
 
     // for mock non-interface
     testCompile('cglib:cglib-nodep:3.2.5')

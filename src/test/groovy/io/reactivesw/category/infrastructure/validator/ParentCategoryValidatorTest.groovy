@@ -1,7 +1,6 @@
-package io.reactivesw.category
+package io.reactivesw.category.infrastructure.validator
 
 import io.reactivesw.category.domain.model.Category
-import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator
 import io.reactivesw.exception.NotExistException
 import spock.lang.Specification
 

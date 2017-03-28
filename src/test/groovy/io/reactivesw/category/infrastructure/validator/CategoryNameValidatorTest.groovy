@@ -1,7 +1,6 @@
-package io.reactivesw.category
+package io.reactivesw.category.infrastructure.validator
 
 import io.reactivesw.category.application.model.CategoryDraft
-import io.reactivesw.category.infrastructure.validator.CategoryNameValidator
 import io.reactivesw.exception.ParametersException
 import io.reactivesw.model.LocalizedString
 import spock.lang.Specification
