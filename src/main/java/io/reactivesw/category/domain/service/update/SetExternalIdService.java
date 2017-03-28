@@ -1,6 +1,6 @@
 package io.reactivesw.category.domain.service.update;
 
-import io.reactivesw.category.application.model.action.SetExternalID;
+import io.reactivesw.category.application.model.action.SetExternalId;
 import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.infrastructure.update.UpdateAction;
 import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
@@ -21,7 +21,7 @@ public class SetExternalIdService implements Updater<Category, UpdateAction> {
    */
   @Override
   public void handle(Category entity, UpdateAction action) {
-    SetExternalID setExternalID = (SetExternalID) action;
-    entity.setExternalId(setExternalID.getExternalId());
+    SetExternalId setExternalId = (SetExternalId) action;
+    entity.setExternalId(setExternalId.getExternalId());
   }
 }

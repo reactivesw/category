@@ -34,12 +34,12 @@ public interface CategoryRepository extends JpaRepository<Category, String>,
   /**
    * Delete category by id.
    *
-   * @param Ids the ids
+   * @param categoryIds the ids
    */
   @Modifying
   @Transactional
   @Query(value = "delete from Category c where c.id in ?1")
-  void deleteCategoryById(List<String> Ids);
+  void deleteCategoryById(List<String> categoryIds);
 
   /**
    * Find category by slug.

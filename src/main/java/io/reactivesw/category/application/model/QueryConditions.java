@@ -21,7 +21,7 @@ public class QueryConditions {
   private Integer version;
 
   /**
-   * name(en="Pro T-Shirt")
+   * example : name(en="Pro T-Shirt").
    */
   private String where;
 

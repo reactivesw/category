@@ -1,6 +1,7 @@
 package io.reactivesw.category.infrastructure.util;
 
 import com.google.common.collect.Lists;
+
 import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.domain.model.LocalizedStringValue;
 

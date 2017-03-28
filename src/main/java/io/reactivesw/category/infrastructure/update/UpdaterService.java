@@ -1,15 +1,11 @@
 package io.reactivesw.category.infrastructure.update;
 
-import com.google.common.collect.ImmutableMap;
-
 import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.model.Updater;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * we may got two kind of update: just use the data in action, or still use data from other service.

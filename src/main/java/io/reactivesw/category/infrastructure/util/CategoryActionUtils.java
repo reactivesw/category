@@ -4,11 +4,6 @@ package io.reactivesw.category.infrastructure.util;
  * Created by Davis on 16/12/29.
  */
 public final class CategoryActionUtils {
-  /**
-   * Instantiates a new Update action utils.
-   */
-  private CategoryActionUtils() {
-  }
 
   /**
    * The constant SET_NAME.
@@ -54,4 +49,10 @@ public final class CategoryActionUtils {
    * The constant SET_EXTERNAL_ID.
    */
   public static final String SET_EXTERNAL_ID = "category_set_external_id";
+
+  /**
+   * Instantiates a new Update action utils.
+   */
+  private CategoryActionUtils() {
+  }
 }
