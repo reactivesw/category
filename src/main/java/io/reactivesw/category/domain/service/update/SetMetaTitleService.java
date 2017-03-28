@@ -23,6 +23,6 @@ public class SetMetaTitleService implements Updater<Category, UpdateAction> {
   @Override
   public void handle(Category entity, UpdateAction action) {
     SetMetaTitle setMetaTitle = (SetMetaTitle) action;
-    entity.setMetaTitle(LocalizedStringMapper.modelToEntityDefaultNew(setMetaTitle.getMetaTitle()));
+    entity.setMetaTitle(LocalizedStringMapper.toEntityDefaultNew(setMetaTitle.getMetaTitle()));
   }
 }

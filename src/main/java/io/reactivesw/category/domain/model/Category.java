@@ -35,7 +35,7 @@ import javax.persistence.Version;
 public class Category {
 
   /**
-   * Id
+   * Id.
    */
   @Id
   @GeneratedValue(generator = "uuid")

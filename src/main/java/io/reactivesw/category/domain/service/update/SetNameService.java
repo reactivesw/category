@@ -23,6 +23,6 @@ public class SetNameService implements Updater<Category, UpdateAction> {
   @Override
   public void handle(Category entity, UpdateAction action) {
     SetName setLocalizedName = (SetName) action;
-    entity.setName(LocalizedStringMapper.modelToEntityDefaultNew(setLocalizedName.getName()));
+    entity.setName(LocalizedStringMapper.toEntityDefaultNew(setLocalizedName.getName()));
   }
 }

@@ -1,7 +1,19 @@
-// for spock unit test
-apply plugin: 'groovy'
-
+// For code coverage
 apply plugin: 'com.palantir.jacoco-coverage'
+
+// For groovy plugin
+apply plugin: "groovy"
+
+dependencies {
+    //groovy for spock
+    testCompile('org.codehaus.groovy:groovy-all:2.4.1')
+
+    //spock core
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
+
+    // for mock non-interface
+    testCompile('cglib:cglib-nodep:3.2.5')
+}
 
 dependencies {
     //spring boot test

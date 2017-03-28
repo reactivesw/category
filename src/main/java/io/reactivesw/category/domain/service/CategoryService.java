@@ -1,6 +1,7 @@
 package io.reactivesw.category.domain.service;
 
 import com.google.common.collect.Lists;
+
 import io.reactivesw.category.application.model.CategoryDraft;
 import io.reactivesw.category.application.model.CategoryView;
 import io.reactivesw.category.application.model.PagedQueryResult;
@@ -16,6 +17,7 @@ import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.NotExistException;
 import io.reactivesw.model.Reference;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,12 +63,12 @@ public class CategoryService {
     List<Category> sameRootCategories = categoryRepository.queryCategoryByParent(parentId);
     CategoryNameValidator.validateEqual(categoryDraft.getName(), sameRootCategories);
 
-    Category entity = CategoryMapper.modelToEntity(categoryDraft);
+    Category entity = CategoryMapper.toEntity(categoryDraft);
     setParentAndAncestors(entity, parentId);
 
     Category savedEntity = saveCategoryEntity(entity);
 
-    CategoryView categoryView = CategoryMapper.entityToModel(savedEntity);
+    CategoryView categoryView = CategoryMapper.toModel(savedEntity);
     LOG.debug("end createCategory, new CategoryEntity is: {}", categoryView.toString());
     //TODO send message
     return categoryView;
@@ -116,7 +118,7 @@ public class CategoryService {
 
     Category updatedEntity = updateCategoryEntity(actions, entity);
     //TODO send message, if slug be updated
-    CategoryView result = CategoryMapper.entityToModel(updatedEntity);
+    CategoryView result = CategoryMapper.toModel(updatedEntity);
 
     LOG.debug("end updateCategory, updated Category is {}", result);
     return result;
@@ -134,7 +136,7 @@ public class CategoryService {
 
     Category entity = getById(id);
 
-    CategoryView result = CategoryMapper.entityToModel(entity);
+    CategoryView result = CategoryMapper.toModel(entity);
 
     LOG.debug("end getCategoryById, get category is : {}", result.toString());
 
@@ -143,17 +145,16 @@ public class CategoryService {
 
   /**
    * Query category.
-   *
+   * TODO: 16/12/13 queryconditions
    * @param queryConditions the QueryConditions
    * @return the paged query result
    */
-// TODO: 16/12/13 queryconditions
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions queryConditions) {
     LOG.debug("enter queryCategories, QueryConditions is : {}", queryConditions.toString());
 
     List<Category> entities = categoryRepository.findAll();
 
-    List<CategoryView> result = CategoryMapper.entityToModel(entities);
+    List<CategoryView> result = CategoryMapper.toModel(entities);
 
     LOG.debug("end queryCategories, get Categories : {}", result);
 
@@ -212,8 +213,8 @@ public class CategoryService {
     Category savedEntity = null;
     try {
       savedEntity = categoryRepository.save(entity);
-    } catch (DataIntegrityViolationException e) {
-      LOG.debug("slug is already exist", e);
+    } catch (DataIntegrityViolationException dataIntegrityViolationException) {
+      LOG.debug("slug is already exist", dataIntegrityViolationException);
       throw new AlreadyExistException("Slug is already exist");
     }
     return savedEntity;

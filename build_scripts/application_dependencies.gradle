@@ -27,4 +27,13 @@ dependencies {
     compile('org.apache.commons:commons-lang3:3.4')
 
     compile("io.reactivesw:commons:0.0.1")
+
+    // For spock core
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
+
+    // For cglib used by Spock
+    testCompile('cglib:cglib-nodep:3.2.4')
+
+    // For groovy used by spock
+    testCompile('org.codehaus.groovy:groovy-all:2.4.1')
 }

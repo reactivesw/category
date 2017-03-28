@@ -23,7 +23,7 @@ public class SetMetaKeywordsService implements Updater<Category, UpdateAction> {
   @Override
   public void handle(Category entity, UpdateAction action) {
     SetMetaKeywords setMetaKeywords = (SetMetaKeywords) action;
-    entity.setMetaKeyWords(LocalizedStringMapper.modelToEntityDefaultNew(setMetaKeywords
+    entity.setMetaKeyWords(LocalizedStringMapper.toEntityDefaultNew(setMetaKeywords
         .getMetaKeywords()));
   }
 }

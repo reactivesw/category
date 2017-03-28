@@ -22,7 +22,7 @@ public class SetDescriptionService implements Updater<Category, UpdateAction> {
   @Override
   public void handle(Category entity, UpdateAction action) {
     SetDescription setLocalizedDescription = (SetDescription) action;
-    entity.setDescription(LocalizedStringMapper.modelToEntityDefaultNew(setLocalizedDescription
+    entity.setDescription(LocalizedStringMapper.toEntityDefaultNew(setLocalizedDescription
         .getDescription()));
   }
 }
