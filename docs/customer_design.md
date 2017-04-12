@@ -16,4 +16,4 @@ For customer-web, category service provide following functions:
 2. if categories is null, return empty list to customer-web immediately.
 3. sort categories by orderHint, smaller orderHint is priority.
 4. convert categories to view model that returns to customer-web.
-5. return result to customer-ewb.
+5. return result to customer-web.
