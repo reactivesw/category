@@ -21,6 +21,8 @@ provides to admin-web as below:
    characters.Maximize size of slug is 256, and minimum size is 2.
 3. name and slug of category are required, others is optional.
 4. category could be multilevel.
+5. a category can only have one parent category. each root category and its
+   descendents form a tree structure.
 
 ### 2.2. Creating category
 
