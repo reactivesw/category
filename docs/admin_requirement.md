@@ -1,11 +1,11 @@
 # Admin-Web Requirement on Category
-This document describes the requirement of admin-web on category service
+This document describes the requirement of admin-web on category service.
 
 ## 1. Introduction
 
 Category service is used to manage category. The functions category service
 provides to admin-web as below:
-+ create category 
++ create category
 + delete category
 + update category 
 + get all category
@@ -14,39 +14,31 @@ provides to admin-web as below:
 
 ## 2. Requirement
 
-### 2.1 About category
+### 2.1 Basic requirement about category
 
 1. name, description, meta title, meta description, meta keywords of category
-   should be multiple language
+   should be multiple language.
 2. slug of category should be alphabetic, numeric, underscore(_) and hyphen(-)
-   characters.Maximize size of slug is 256, and minimum size is 2
-3. name and slug of category are required, others is optional
-4. category could be multilevel
+   characters.Maximize size of slug is 256, and minimum size is 2.
+3. name and slug of category are required, others is optional.
+4. category could be multilevel.
 
-### 2.1. About creating category
+### 2.2. Creating category
 
-1. satisfing the requirement about category
-2. the category administrator want to create should not exist
+1. name and slug of category should be unique.
+2. parent of a category could be added while creating a new category.
+3. orderHint will be generated automatically by server.
 
-### 2.2. About deleting category
-1. the category administrator want to delete should exist
-2. the category administrator want to delete should correspond with correct
-   version
+### 2.3. Deleting category
+1. if a category is deleted, all sub category of this category will be deleted too.
+2. the association between product and category will be deleted.
 
-### 2.3 About updating category
+### 2.4 Updating category
+1. all attribute of category could be updated
 
-1. satisfing the requirement about category
-2. the category administrator want to update should exist
+### 2.5. Getting individual category
 
-### 2.4. About getting individual category
-
-1. individual category you want to get should exist
-
-### 2.5. About getting all category
-
-1. satisfing the requirement about category
-
-### 2.6. About getting category with condition
+### 2.6. Getting all category
 
 ## 3. How to provide
 Category service provides RESTful API to admin-web, here
