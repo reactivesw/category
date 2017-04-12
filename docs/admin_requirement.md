@@ -7,10 +7,9 @@ Category service is used to manage category. The functions category service
 provides to admin-web as below:
 + create category
 + delete category
-+ update category 
-+ get all category
++ update category
 + get individual category 
-+ get category with condition
++ get all categories
 
 ## 2. Requirement
 
@@ -38,7 +37,7 @@ provides to admin-web as below:
 
 ### 2.5. Getting individual category
 
-### 2.6. Getting all category
+### 2.6. Getting all categories
 
 ## 3. How to provide
 Category service provides RESTful API to admin-web, here
