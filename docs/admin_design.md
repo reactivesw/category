@@ -68,7 +68,6 @@ When update category order, what we need to do is update one category `orderHint
     the result: (0.149199068195555 + 1) / 2 = 0.574599534097775
     ```
 
-
 ### 2.2 Multilevel Design
 
 ### 2.3 Multi-Language Design
@@ -77,12 +76,12 @@ In our system, multi-language is basic function, here is design [document](https
 
 ## 3. Workflow
 
-### 6.1. Create Category
+### 3.1. Create Category
 
-### 6.2 Delete Category
+### 3.2 Delete Category
 
-### 6.3 Update Category
+### 3.3 Update Category
 
-### 6.4 Get Individual Category
+### 3.4 Get Individual Category
 
-### 6.5 Get All Categories
+### 3.5 Get All Categories
