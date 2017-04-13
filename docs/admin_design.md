@@ -97,8 +97,8 @@ parent could be added in the meanwhile, here is the rule:
 
 	``` electronic product -> computer -> cpu ```
 	
-	so `electronic product` is a root category, `electronic product` and
-    `computer` are ancestor of `cpu` category
+	so `electronic product` is a root category, [`electronic product`
+    `computer`] are ancestor of `cpu` category
 	
 3. if a category change its parent category, it should also change its ancestors
    and its sub category's ancestors.For example, if `computer` category changes
@@ -108,9 +108,9 @@ parent could be added in the meanwhile, here is the rule:
    
    After: ``` necessity -> computer -> cpu ```
 
-   Now, the ancestor of `computer` changes from `electronic product` to
-   `necessity`, and the ancestors of `cpu` changes from `electronic product` and
-   `computer` to `necessity` and `computer`
+   Then, the ancestors of `computer` changes from [`electronic product`] to
+   [`necessity`], and the ancestors of `cpu` changes from [`electronic product`
+   `computer`] to [`necessity` `computer`]
 
 
 ### 2.3 Multi-Language Design
