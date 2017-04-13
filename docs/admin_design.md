@@ -85,20 +85,32 @@ parent could be added in the meanwhile, here is the rule:
 
 1. get parent id from categoryDraft object from admin-web
    
-2. set parent and ancestor for this new category. 
-
-3. in setp 2, if its parent id is null, it set its parent as empty(thus, it is a
-   root category), otherwise, just setting parent for this new category.Be
-   careful, if the parent of this new category is not a root category, the new
-   category will have grandparent category, its parent and grandparent should be
-   set as ancestor. For example: if you want to create new category named `cpu`,
-   then its parent category is `computer`, and `computer` has a parent category
-   named `electronic product`
+2. set parent and ancestor for this new category. clarifing something about
+   ancestor that ancestor is a list of string, store the path from root category
+   to parent category. If its parent id is null, it set its parent as
+   empty(thus, it is a root category), otherwise, just setting parent for this
+   new category.Be careful, if the parent of this new category is not a root
+   category, the new category will have grandparent category, its parent and
+   grandparent should be set as ancestor. For example: if you want to create new
+   category named `cpu`, then its parent category is `computer`, and `computer`
+   has a parent category named `electronic product`
 
 	``` electronic product -> computer -> cpu ```
 	
 	so `electronic product` is a root category, `electronic product` and
     `computer` are ancestor of `cpu` category
+	
+3. if a category change its parent category, it should also change its ancestors
+   and its sub category's ancestors.For example, if `computer` category changes
+   it parent from `electronic product` to `necessity`:
+
+   Before: ``` electronic product -> computer -> cpu ```
+   
+   After: ``` necessity -> computer -> cpu ```
+
+   Now, the ancestor of `computer` changes from `electronic product` to
+   `necessity`, and the ancestors of `cpu` changes from `electronic product` and
+   `computer` to `necessity` and `computer`
 
 
 ### 2.3 Multi-Language Design
