@@ -95,7 +95,8 @@ TODO
 | field name | field type | comments |
 |-|-|-|
 | action | String | required, set as `setOrderHint` |
-| orderHint | String | required, NotNull |
+| previousOrderHint | String | required, NotNull |
+| followingOrderHint | String | required, NotNull |
 
 #### SetParent
 
