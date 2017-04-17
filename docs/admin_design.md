@@ -46,12 +46,12 @@ the rule:
 
 2. convert step 1 value to float data, 14919906819555 -> 0.14919906819555.
 
-3. store setp 2 value to `orderHint` in string.
+3. store step 2 value to `orderHint` in string.
 
 When update category order, what we need to do is update one category
 `orderHint` and others don't need to change, here is the rule:
 
-1. get the first one category `orderHint` and after one category `orderHint`,
+1. get the previous category `orderHint` and behind one category `orderHint`,
    calculate the median of two `orderHint`.  example:
 
    ```
