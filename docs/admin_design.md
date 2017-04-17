@@ -18,20 +18,17 @@ For category, there is 3 special requirements:
 
 * order
 
-    a new category will be the last one in category list. order of category can
-    be changed.
+    a new category will be the last one in category list. order of category can be changed.
 
 * multilevel
 
-    a category can have one parent category. each root category and its
-    descendents form a tree structure.
+    a category can have one parent category. each root category and its descendents form a tree structure.
 
-* multi-languang
+* multi-language
 
-    name, description, meta title, meta description, meta keywords of category
-    should be multiple language.
+    name, description, meta title, meta description, meta keywords of category should be multiple language.
 
-Following is how to achieve those requirement.
+Following is how to achieve those requirements.
 
 ### 2.1 OrderHint Design
 
@@ -51,8 +48,7 @@ the rule:
 When update category order, what we need to do is update one category
 `orderHint` and others don't need to change, here is the rule:
 
-1. get the previous category `orderHint` and behind one category `orderHint`,
-   calculate the median of two `orderHint`.  example:
+1. get the previous category `orderHint` and behind one category `orderHint`, calculate the median of two `orderHint`, example:
 
    ```
    the first one orderHint: 0.149199068195555
@@ -60,8 +56,7 @@ When update category order, what we need to do is update one category
 
    the result: (0.149199068195555 + 0.149199068195556) / 2 = 0.1491990681955555
    ```
-2. if change the category to the first one, the new `orderHint` will be the
-    median of the original first one `orderHint` and `0`.  example:
+2. if change the category to the first one, the new `orderHint` will be the median of the original first one `orderHint` and `0`, example:
 
     ```
     the orginal first one orderHint: 0.149199068195555
@@ -69,8 +64,7 @@ When update category order, what we need to do is update one category
     the result: (0.149199068195555 + 0) / 2 = 0.074599534097775
     ```
 
-3. if change the category to the last one, the new `orderHint` will be the
-    median of the original last one `orderHint` and `1`.  exmaple:
+3. if change the category to the last one, the new `orderHint` will be the median of the original last one `orderHint` and `1`, example:
 
     ```
     the orginal last one orderHint: 0.149199068195555
@@ -79,6 +73,7 @@ When update category order, what we need to do is update one category
     ```
 
 ### 2.2 Multilevel Design
+
 A category could at most have one parent category. If a category has no parent
 category, this category is a root category. When creating a new category, its
 parent could be added in the meanwhile, here is the rule:
@@ -122,6 +117,7 @@ design
 ## 3. Workflow
 
 ### 3.1. Create Category
+
 1. get categoryDraft object.
 2. get parent id from categoryDraft object and get all categories derived from a
    same parent.
@@ -135,6 +131,7 @@ design
 7. convert entity object to view object, and return result.
 
 ### 3.2 Delete Category
+
 1. get category id and version.
 2. get category entity object by id.
 3. check whether id correspond with correct version or not.
@@ -150,14 +147,15 @@ design
 5. convert entity object to view object, and return result.
 
 ### 3.4 Get Individual Category
+
 1. get category id.
 2. get category entity object by id.
 3. convert entity to view and return result.
 
 ### 3.5 Get All Categories
+
 1. receive get request without extra parameters.
 2. get all categories from database.
 3. convert category entity object to view object.
-4. put all view object into a `PageQueryObject` and count the size of view
-   object.
+4. put all view object into a `PageQueryObject` and count the size of view object.
 5. return `PageQueryObject`.
