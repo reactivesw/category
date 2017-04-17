@@ -7,6 +7,7 @@ import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.ParametersException;
 import io.reactivesw.model.LocalizedString;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,6 @@ public final class CategoryNameValidator {
 
   /**
    * Validate null.
-   *
    * @param draft the draft
    */
   public static void validateNull(CategoryDraft draft) {
@@ -41,12 +41,17 @@ public final class CategoryNameValidator {
       LOG.debug("CategoryView name can not be null");
       throw new ParametersException("CategoryView name can not be null");
     }
+    for (Map.Entry<String, String> entry : draft.getName().getLocalized().entrySet()) {
+      if (StringUtils.isEmpty(entry.getValue()) || StringUtils.isEmpty(entry.getKey())) {
+        LOG.debug("CategoryView name can not be empty");
+        throw new ParametersException("CategoryView name can not be empty");
+      }
+    }
   }
 
   /**
    * Equal validate.
-   *
-   * @param name               the name
+   * @param name the name
    * @param sameRootCategories the same root categories
    */
   public static void validateEqual(LocalizedString name, List<Category> sameRootCategories) {
