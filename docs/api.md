@@ -96,7 +96,7 @@ TODO
 |-|-|-|
 | action | String | required, set as `setOrderHint` |
 | previousOrderHint | String | required, NotNull |
-| followingOrderHint | String | required, NotNull |
+| nextOrderHint | String | required, NotNull |
 
 #### SetParent
 
