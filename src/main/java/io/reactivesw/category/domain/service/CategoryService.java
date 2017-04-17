@@ -11,9 +11,9 @@ import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.infrastructure.repository.CategoryRepository;
 import io.reactivesw.category.infrastructure.update.UpdateAction;
 import io.reactivesw.category.infrastructure.update.UpdaterService;
+import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
 import io.reactivesw.category.infrastructure.validator.CategoryVersionValidator;
-import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.NotExistException;
 import io.reactivesw.model.Reference;
@@ -41,14 +41,24 @@ public class CategoryService {
   /**
    * CategoryEntity Repository.
    */
-  @Autowired
   private transient CategoryRepository categoryRepository;
 
   /**
    * category update service.
    */
-  @Autowired
   private transient UpdaterService updateService;
+
+  /**
+   * Instantiates a new Category service.
+   *
+   * @param categoryRepository the category repository
+   * @param updateService      the update service
+   */
+  @Autowired
+  public CategoryService(CategoryRepository categoryRepository, UpdaterService updateService) {
+    this.categoryRepository = categoryRepository;
+    this.updateService = updateService;
+  }
 
   /**
    * Create category.
@@ -70,7 +80,7 @@ public class CategoryService {
 
     CategoryView categoryView = CategoryMapper.toModel(savedEntity);
     LOG.debug("end createCategory, new CategoryEntity is: {}", categoryView.toString());
-    //TODO send message
+
     return categoryView;
   }
 
@@ -81,24 +91,25 @@ public class CategoryService {
    * @param version the version
    */
   @Transactional
-  public void deleteCategory(String id, Integer version) {
-    LOG.debug("enter deleteCategory, id:{}, version:{}", id, version);
+  public List<String> deleteCategory(String id, Integer version) {
+    LOG.debug("Enter. CategoryId: {}, version: {}.", id, version);
 
     Category entity = getById(id);
     CategoryVersionValidator.validate(entity, version);
 
-    List<Category> tatalCategoryEitities = Lists.newArrayList(entity);
+    List<Category> totalCategories = Lists.newArrayList(entity);
+
     List<Category> subCategories = categoryRepository.querySubCategoriesByAncestorId(id);
-    if (subCategories != null && !subCategories.isEmpty()) {
-      tatalCategoryEitities.addAll(subCategories);
+    if (subCategories != null) {
+      totalCategories.addAll(subCategories);
     }
 
-    categoryRepository.delete(tatalCategoryEitities);
+    List<String> result = CategoryUtils.getCategoryId(totalCategories);
 
-    //TODO send message for:
-    // remove from all those product that had that category assigned in their ProductData
+    categoryRepository.delete(totalCategories);
 
-    LOG.debug("end deleteCategory, id:{}, version:{}", id, version);
+    LOG.debug("Exit. Deleted CategoryId: {}.", result);
+    return result;
   }
 
   /**
@@ -146,6 +157,7 @@ public class CategoryService {
   /**
    * Query category.
    * TODO: 16/12/13 queryconditions
+   *
    * @param queryConditions the QueryConditions
    * @return the paged query result
    */
@@ -186,12 +198,12 @@ public class CategoryService {
    *
    * @param entity   category entity
    * @param parentId parent id
-   * @return CategoryEntity
+   * @return CategoryEntity parent and ancestors
    */
   public Category setParentAndAncestors(Category entity, String parentId) {
     List<String> ancestors = Lists.newArrayList();
     if (StringUtils.isNotBlank(parentId)) {
-      Category parent = getParentCategory(parentId);
+      Category parent = getById(parentId);
       ancestors = setAncestors(parentId, parent);
     }
     entity.setParent(parentId);
@@ -256,18 +268,6 @@ public class CategoryService {
     LOG.debug("end getById, id is {}, get CategoryEntity:{}",
         id, categoryEntity.toString());
     return categoryEntity;
-  }
-
-  /**
-   * Gets parent category.
-   *
-   * @param parentId the parent id
-   * @return the parent category
-   */
-  private Category getParentCategory(String parentId) {
-    Category parent = categoryRepository.findOne(parentId);
-    ParentCategoryValidator.validate(parentId, parent);
-    return parent;
   }
 
   /**

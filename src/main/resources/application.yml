@@ -17,3 +17,13 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+io:
+  reactivesw:
+    message:
+      broker:
+        host: http://umasuo.com
+      brokerType: google
+      google:
+        project:
+          id: reactivesw-project

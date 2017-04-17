@@ -176,6 +176,7 @@ design
 | expire | Long | expire time |
 | version | Integer | version of the event, not null |
 | data | String | the real data of the event |
+| topic | String | the topic name |
 
 * event data
 

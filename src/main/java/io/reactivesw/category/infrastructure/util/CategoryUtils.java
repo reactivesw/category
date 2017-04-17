@@ -6,6 +6,7 @@ import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.domain.model.LocalizedStringValue;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Davis on 16/12/28.
@@ -31,5 +32,21 @@ public final class CategoryUtils {
           .forEach(categoryNames::addAll);
     }
     return categoryNames;
+  }
+
+  /**
+   * Gets category id.
+   *
+   * @param categories the categories
+   * @return the category id
+   */
+  public static List<String> getCategoryId(List<Category> categories) {
+    List<String> idList = Lists.newArrayList();
+
+    idList = categories.stream().map(
+        category -> category.getId()
+    ).collect(Collectors.toList());
+
+    return idList;
   }
 }
