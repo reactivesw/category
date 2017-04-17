@@ -64,6 +64,7 @@ public class CategoryService {
     CategoryNameValidator.validateEqual(categoryDraft.getName(), sameRootCategories);
 
     Category entity = CategoryMapper.toEntity(categoryDraft);
+    entity.setOrderHint(getOrderHint());
     setParentAndAncestors(entity, parentId);
 
     Category savedEntity = saveCategoryEntity(entity);
@@ -284,5 +285,18 @@ public class CategoryService {
     }
     ancestors.add(parentId);
     return ancestors;
+  }
+
+  /**
+   * get order hint by current system time
+   * @return order hint
+   */
+  private String getOrderHint() {
+    long currentTime = System.currentTimeMillis();
+    int length = String.valueOf(currentTime).length();
+    double divisor = Math.pow(10, length);
+//    convert current time to decimal
+    String orderHint = String.valueOf(currentTime / divisor);
+    return orderHint;
   }
 }

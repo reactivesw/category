@@ -8,10 +8,10 @@ import io.reactivesw.category.domain.service.CategoryService;
 import io.reactivesw.category.infrastructure.Router;
 import io.reactivesw.category.infrastructure.update.UpdateRequest;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +27,7 @@ import javax.validation.Valid;
 /**
  * Created by Davis on 16/11/18.
  */
+
 @RestController
 public class CategoryController {
   /**
@@ -42,7 +43,6 @@ public class CategoryController {
 
   /**
    * Create category category.
-   *
    * @param categoryDraft the draft
    * @return the category
    */
@@ -62,7 +62,6 @@ public class CategoryController {
 
   /**
    * Delete category.
-   *
    * @param version the version
    */
   @DeleteMapping(value = Router.CATEGORY_WITH_ID)
@@ -77,8 +76,7 @@ public class CategoryController {
 
   /**
    * Update category category.
-   *
-   * @param id            the id
+   * @param id the id
    * @param updateRequest the fields
    * @return the category
    */
@@ -97,7 +95,6 @@ public class CategoryController {
 
   /**
    * Gets category by id.
-   *
    * @param id the id
    * @return the category by id
    */
@@ -111,7 +108,6 @@ public class CategoryController {
 
   /**
    * Query category list.
-   *
    * @return the list
    */
   @GetMapping(Router.CATEGORY_ROOT)

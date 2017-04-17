@@ -8,19 +8,31 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ *
  */
 @Service(value = CategoryActionUtils.SET_ORDER_HINT)
 public class SetOrderHintService implements Updater<Category, UpdateAction> {
   /**
-   * set order hint.
-   *
+   * Set order hint.
    * @param entity E
    * @param action UpdateAction
    */
   @Override
   public void handle(Category entity, UpdateAction action) {
     SetOrderHint setOrderHint = (SetOrderHint) action;
-    entity.setOrderHint(setOrderHint.getOrderHint());
+    entity.setOrderHint(calculateMedianOfOrderHint(setOrderHint.getPreviousOrderHint(),
+        setOrderHint.getNextOrderHint()));
+  }
+
+  /**
+   * Calculate median of two order hint
+   * @param previousOrderHint previousOrderHint
+   * @param nextOrderHint nextOrderHint
+   * @return median of two order hint
+   */
+  private String calculateMedianOfOrderHint(String previousOrderHint, String nextOrderHint) {
+    double previous = Double.parseDouble(previousOrderHint);
+    double next = Double.parseDouble(nextOrderHint);
+    return String.valueOf((previous + next) / 2);
   }
 }

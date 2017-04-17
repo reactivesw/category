@@ -13,12 +13,17 @@ import lombok.Setter;
 @Setter
 public class SetOrderHint implements UpdateAction {
   /**
-   * The Order hint.
+   * The previous order hint.
    */
-  private String orderHint;
+  private String previousOrderHint;
 
   /**
-   * get update service name.
+   * The next order hint
+   */
+  private String nextOrderHint;
+
+  /**
+   * Get update service name.
    *
    * @return update service name
    */
