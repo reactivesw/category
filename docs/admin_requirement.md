@@ -4,7 +4,7 @@ This document describes the requirement of admin-web on category service.
 ## 1. Introduction
 
 Category service is used to manage category. The functions category service
-provides to admin-web as below:
+provides to as below:
 
 + create category
 + delete category
@@ -46,6 +46,6 @@ provides to admin-web as below:
 
 ## 3. How to provide
 
-Category service provides RESTful API to admin-web, here
+Category service provides RESTful API , here
 is
 [api documentation](https://github.com/reactivesw/category/blob/master/docs/api.md)

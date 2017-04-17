@@ -4,7 +4,7 @@ This document describes how to achieve the admin-web [requirement](./admin-requi
 
 ## 1. Basic Functions
 
-For admin-web, category service provides following functions:
+Category service provides following functions:
 
 + create category
 + delete category
@@ -83,7 +83,7 @@ A category could at most have one parent category. If a category has no parent
 category, this category is a root category. When creating a new category, its
 parent could be added in the meanwhile, here is the rule:
 
-1. get parent id from categoryDraft object from admin-web
+1. get parent id from categoryDraft object 
    
 2. set parent and ancestor for this new category. clarifing something about
    ancestor that ancestor is a list of string, store the path from root category
@@ -122,35 +122,42 @@ design
 ## 3. Workflow
 
 ### 3.1. Create Category
-1. get categoryDraft object from admin-web.
+1. get categoryDraft object.
 2. get parent id from categoryDraft object and get all categories derived from a
    same parent.
-3. convert categoryDraft object to category entity object.
-4. call save category function
-5. convert entity object to view object, and return to admin-web.
+3. check whether new category's name is unique on the same level.
+4. set parent and ancestor for this new category. Ancestor is a list of string,
+   store the path from root category to parent category. If its parent id is
+   null, it set its parent as empty(thus, it is a root category), otherwise,
+   just setting parent for this new category.
+5. convert categoryDraft object to category entity object.
+6. call save category function.
+7. convert entity object to view object, and return result.
 
 ### 3.2 Delete Category
-1. get category id and version from admin-web.
+1. get category id and version.
 2. get category entity object by id.
-3. get all sub categories of this category.
-4. delete this category and its all sub categories
+3. check whether id correspond with correct version or not.
+4. get all sub categories of this category.
+5. delete this category and its all sub categories.
 
 ### 3.3 Update Category
 
-1. get category id and update action list from admin-web.
+1. get category id and update action list. 
 2. get category entity object by id.
-3. update category by the attribute defined in update action list.
-4. convert entity object to view object, and return to admin-web.
+3. check whether id correspond with correct version or not.
+4. update category by the attribute defined in update action list.
+5. convert entity object to view object, and return result.
 
 ### 3.4 Get Individual Category
-1. get category id from admin-web
-2. get category entity object by id
-3. convert entity to view and return to admin-web.
+1. get category id.
+2. get category entity object by id.
+3. convert entity to view and return result.
 
 ### 3.5 Get All Categories
-1. receive get request without extra parameters from admin-web.
-2. get all categories from database
-3. convert category entity object to view object
+1. receive get request without extra parameters.
+2. get all categories from database.
+3. convert category entity object to view object.
 4. put all view object into a `PageQueryObject` and count the size of view
-   object
-5. return `PageQueryObject` to admin-web
+   object.
+5. return `PageQueryObject`.
