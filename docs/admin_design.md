@@ -185,4 +185,9 @@ design
 
 #### 4.1.2 Topic Design
 
-Topic name: `reactivesw-category-deleted`
+Topic name: `reactivesw-category-deleted`.
+Use gcloud command to create this topic:
+
+```shell
+gcloud beta pubsub topics create reactivesw-category-deleted
+```
