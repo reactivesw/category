@@ -167,15 +167,6 @@ design
 
 #### 4.1.1 Model Design
 
-* event body
-
-| field name | field style | comment |
-|--|--|--|
-| id | String | UUID, created by database, not null |
-| createdTime | Long | create time, not null |
-| expire | Long | expire time |
-| data | String | the real data of the event, json string |
-
 * event entity
 
 | field name | field style | comment |
