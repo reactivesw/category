@@ -8,7 +8,7 @@ import io.reactivesw.category.domain.model.LocalizedStringValue;
 import java.util.List;
 
 /**
- * Created by Davis on 16/12/28.
+ * Utils for category.
  */
 public final class CategoryUtils {
   /**
@@ -19,7 +19,6 @@ public final class CategoryUtils {
 
   /**
    * get all names from list of CategoryEntity.
-   *
    * @param categories list of CategoryEntity
    * @return list of LocalizedStringEntity
    */
@@ -31,5 +30,17 @@ public final class CategoryUtils {
           .forEach(categoryNames::addAll);
     }
     return categoryNames;
+  }
+
+  /**
+   * Get order hint by current system time.
+   * @return order hint
+   */
+  public static String getOrderHint() {
+    long currentTime = System.currentTimeMillis();
+    int length = String.valueOf(currentTime).length();
+    double divisor = Math.pow(10, length);
+    //    convert current time to decimal
+    return String.valueOf(currentTime / divisor);
   }
 }

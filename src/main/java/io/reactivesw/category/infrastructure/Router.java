@@ -1,7 +1,7 @@
 package io.reactivesw.category.infrastructure;
 
 /**
- * Created by umasuo on 16/12/20.
+ * Url for category service.
  */
 public class Router {
 

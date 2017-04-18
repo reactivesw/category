@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by umasuo on 16/11/22.
+ * Category Repository to handle database access.
  */
 public interface CategoryRepository extends JpaRepository<Category, String>,
     JpaSpecificationExecutor {

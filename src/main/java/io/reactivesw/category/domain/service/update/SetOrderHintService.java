@@ -7,8 +7,10 @@ import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
 import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
- *
+ * Service to set orderHint when update category.
  */
 @Service(value = CategoryActionUtils.SET_ORDER_HINT)
 public class SetOrderHintService implements Updater<Category, UpdateAction> {
@@ -25,14 +27,14 @@ public class SetOrderHintService implements Updater<Category, UpdateAction> {
   }
 
   /**
-   * Calculate median of two order hint
+   * Calculate median of two order hint.
    * @param previousOrderHint previousOrderHint
    * @param nextOrderHint nextOrderHint
    * @return median of two order hint
    */
   private String calculateMedianOfOrderHint(String previousOrderHint, String nextOrderHint) {
-    double previous = Double.parseDouble(previousOrderHint);
-    double next = Double.parseDouble(nextOrderHint);
-    return String.valueOf((previous + next) / 2);
+    BigDecimal previous = new BigDecimal(previousOrderHint);
+    BigDecimal next = new BigDecimal(nextOrderHint);
+    return String.valueOf(previous.add(next).divide(new BigDecimal(2)));
   }
 }

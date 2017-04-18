@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by Davis on 17/1/9.
+ * Validator for parentCategory.
  */
 public final class ParentCategoryValidator {
   /**
@@ -22,9 +22,8 @@ public final class ParentCategoryValidator {
 
   /**
    * validate if parent is null.
-   *
    * @param parentId parent id
-   * @param parent   parent category
+   * @param parent parent category
    */
   public static void validate(String parentId, Category parent) {
     if (parent == null) {

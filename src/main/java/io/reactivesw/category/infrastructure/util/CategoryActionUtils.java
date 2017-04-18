@@ -1,7 +1,7 @@
 package io.reactivesw.category.infrastructure.util;
 
 /**
- * Created by Davis on 16/12/29.
+ * Utils for category action.
  */
 public final class CategoryActionUtils {
 

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by Davis on 16/11/30.
+ * Mapper for localizedString.
  */
 public final class LocalizedStringMapper {
 

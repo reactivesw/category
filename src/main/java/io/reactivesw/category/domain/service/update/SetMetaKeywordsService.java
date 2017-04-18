@@ -9,7 +9,7 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set metaKeywords when update category.
  */
 @Service(value = CategoryActionUtils.SET_META_KEYWORD)
 public class SetMetaKeywordsService implements Updater<Category, UpdateAction> {

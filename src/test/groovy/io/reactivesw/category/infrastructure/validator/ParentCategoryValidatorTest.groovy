@@ -5,7 +5,7 @@ import io.reactivesw.exception.NotExistException
 import spock.lang.Specification
 
 /**
- * Created by Davis on 17/3/28.
+ *
  */
 class ParentCategoryValidatorTest extends Specification {
     ParentCategoryValidator validator = new ParentCategoryValidator()

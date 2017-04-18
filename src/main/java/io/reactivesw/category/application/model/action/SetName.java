@@ -10,7 +10,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Davis on 16/12/29.
+ * SetName for updating category.
  */
 @Getter
 @Setter

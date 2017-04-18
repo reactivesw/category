@@ -11,6 +11,7 @@ import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.infrastructure.repository.CategoryRepository;
 import io.reactivesw.category.infrastructure.update.UpdateAction;
 import io.reactivesw.category.infrastructure.update.UpdaterService;
+import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
 import io.reactivesw.category.infrastructure.validator.CategoryVersionValidator;
 import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator;
@@ -28,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by Davis on 16/11/28.
+ * Category service.
  */
 @Service
 public class CategoryService {
@@ -62,7 +63,7 @@ public class CategoryService {
     CategoryNameValidator.validateEqual(categoryDraft.getName(), sameRootCategories);
 
     Category entity = CategoryMapper.toEntity(categoryDraft);
-    entity.setOrderHint(getOrderHint());
+    entity.setOrderHint(CategoryUtils.getOrderHint());
     setParentAndAncestors(entity, parentId);
 
     Category savedEntity = saveCategoryEntity(entity);
@@ -275,15 +276,4 @@ public class CategoryService {
     return ancestors;
   }
 
-  /**
-   * get order hint by current system time
-   * @return order hint
-   */
-  private String getOrderHint() {
-    long currentTime = System.currentTimeMillis();
-    int length = String.valueOf(currentTime).length();
-    double divisor = Math.pow(10, length);
-//    convert current time to decimal
-    return String.valueOf(currentTime / divisor);
-  }
 }
