@@ -4,6 +4,7 @@ import io.reactivesw.category.application.model.CategoryDraft;
 import io.reactivesw.category.application.model.CategoryView;
 import io.reactivesw.category.application.model.PagedQueryResult;
 import io.reactivesw.category.application.model.QueryConditions;
+import io.reactivesw.category.application.service.CategoryApplication;
 import io.reactivesw.category.domain.service.CategoryService;
 import io.reactivesw.category.infrastructure.Router;
 import io.reactivesw.category.infrastructure.update.UpdateRequest;
@@ -29,16 +30,34 @@ import javax.validation.Valid;
  */
 @RestController
 public class CategoryController {
+
   /**
    * log.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
 
   /**
-   * CategoryEntity Service.
+   * Category Service.
+   */
+  private transient CategoryService categoryService;
+
+  /**
+   * Category Application.
+   */
+  private transient CategoryApplication categoryApplication;
+
+  /**
+   * Instantiates a new Category controller.
+   *
+   * @param categoryService the category service
+   * @param categoryApplication the category application
    */
   @Autowired
-  private transient CategoryService categoryService;
+  public CategoryController(CategoryService categoryService,
+      CategoryApplication categoryApplication) {
+    this.categoryService = categoryService;
+    this.categoryApplication = categoryApplication;
+  }
 
   /**
    * Create category category.
@@ -48,7 +67,7 @@ public class CategoryController {
    */
   @PostMapping(Router.CATEGORY_ROOT)
   public CategoryView createCategory(@RequestBody
-                                     @Valid CategoryDraft categoryDraft) {
+  @Valid CategoryDraft categoryDraft) {
     LOG.debug("create category : {}", categoryDraft.toString());
 
     CategoryNameValidator.validateNull(categoryDraft);
@@ -67,10 +86,10 @@ public class CategoryController {
    */
   @DeleteMapping(value = Router.CATEGORY_WITH_ID)
   public void deleteCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
-                             @RequestParam Integer version) {
+      @RequestParam Integer version) {
     LOG.debug("enter deleteCategory, id is {}, version is {}", id, version);
 
-    categoryService.deleteCategory(id, version);
+    categoryApplication.deleteCategory(id, version);
 
     LOG.debug("end deleteCategory, id is {}, version is {}", id, version);
   }
@@ -78,13 +97,13 @@ public class CategoryController {
   /**
    * Update category category.
    *
-   * @param id            the id
+   * @param id the id
    * @param updateRequest the fields
    * @return the category
    */
   @PutMapping(Router.CATEGORY_WITH_ID)
   public CategoryView updateCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
-                                     @RequestBody @Valid UpdateRequest updateRequest) {
+      @RequestBody @Valid UpdateRequest updateRequest) {
     LOG.debug("enter updateCategory,id is {}, update request is {}", id, updateRequest.toString());
 
     CategoryView result = categoryService.updateCategory(id, updateRequest.getVersion(),

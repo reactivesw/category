@@ -18,7 +18,7 @@ For category, there is 3 special requirements:
 
 * order
 
-    a new category will be the last one in category list. order of category can be changed.
+  a new category will be the last one in category list. order of category can be changed.
 
 * multilevel
 
@@ -137,6 +137,7 @@ design
 3. check whether id correspond with correct version or not.
 4. get all sub categories of this category.
 5. delete this category and its all sub categories.
+6. produce event about deleting category.
 
 ### 3.3 Update Category
 
@@ -159,3 +160,35 @@ design
 3. convert category entity object to view object.
 4. put all view object into a `PageQueryObject` and count the size of view object.
 5. return `PageQueryObject`.
+
+## 4. Event Design
+
+### 4.1 Delete Category Event
+
+#### 4.1.1 Model Design
+
+* event entity
+
+| field name | field style | comment |
+|--|--|--|
+| id | String | UUID, created by database, not null |
+| createdTime | Long | create time, not null |
+| expire | Long | expire time |
+| version | Integer | version of the event, not null |
+| data | String | the real data of the event |
+| topic | String | the topic name |
+
+* event data
+
+| field name | field style | comment |
+|--|--|--|
+| categoryIds | List\<String\> | category id in a list |
+
+#### 4.1.2 Topic Design
+
+Topic name: `reactivesw-category-deleted`.
+Use gcloud command to create this topic:
+
+```shell
+gcloud beta pubsub topics create reactivesw-category-deleted
+```
