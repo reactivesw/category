@@ -28,8 +28,8 @@ public final class ParentCategoryValidator {
    */
   public static void validate(String parentId, Category parent) {
     if (parent == null) {
-      LOG.debug("can not find parent category by id:{}", parentId);
-      throw new NotExistException("Can not find parent category by id : " + parentId);
+      LOG.debug("Can not find parent category by id: {}.", parentId);
+      throw new NotExistException("Can not find parent category by id: " + parentId);
     }
   }
 }

@@ -70,7 +70,7 @@ public final class CategoryNameValidator {
       String value = entry.getValue().toString();
       for (LocalizedStringValue categoryName : categoryNames) {
         if (key.equals(categoryName.getLanguage()) && value.equals(categoryName.getText())) {
-          LOG.debug("can not create category with same name : {}, key: {}.", value, key);
+          LOG.debug("Can not create category with same name: {}, key: {}.", value, key);
           throw new AlreadyExistException("Can not create category with same name.");
         }
       }
