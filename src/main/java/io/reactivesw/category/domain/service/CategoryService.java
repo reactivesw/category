@@ -17,7 +17,6 @@ import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.NotExistException;
 import io.reactivesw.model.Reference;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +51,6 @@ public class CategoryService {
 
   /**
    * Create category.
-   *
    * @param categoryDraft the category draft
    * @return the category
    */
@@ -77,8 +75,7 @@ public class CategoryService {
 
   /**
    * Delete category by id and version.
-   *
-   * @param id      the id
+   * @param id the id
    * @param version the version
    */
   @Transactional
@@ -104,8 +101,7 @@ public class CategoryService {
 
   /**
    * Update category.
-   *
-   * @param id      the id
+   * @param id the id
    * @param version the update request
    * @param actions the update action
    * @return the category
@@ -127,7 +123,6 @@ public class CategoryService {
 
   /**
    * Gets category by id.
-   *
    * @param id the id
    * @return the category by id
    * @throws NotExistException if the can not find CategoryEntity by the id
@@ -169,7 +164,6 @@ public class CategoryService {
 
   /**
    * gete parent id by CategoryDraft.
-   *
    * @param categoryDraft the CategoryDraft
    * @return parent id
    */
@@ -184,8 +178,7 @@ public class CategoryService {
 
   /**
    * set parent id and ancestors.
-   *
-   * @param entity   category entity
+   * @param entity category entity
    * @param parentId parent id
    * @return CategoryEntity
    */
@@ -204,7 +197,6 @@ public class CategoryService {
 
   /**
    * Save category entity.
-   *
    * @param entity the entity
    * @return the category entity
    * @throws AlreadyExistException if slug is already exist and get DataIntegrityViolationException
@@ -223,9 +215,8 @@ public class CategoryService {
 
   /**
    * update category entity.
-   *
    * @param actions update actions
-   * @param entity  CategoryEntity
+   * @param entity CategoryEntity
    * @return updated category entity.
    */
   @Transactional
@@ -239,7 +230,6 @@ public class CategoryService {
 
   /**
    * Gets category by id.
-   *
    * @param id the id
    * @return the category by id
    * @throws NotExistException if the can not find CategoryEntity by the id
@@ -261,7 +251,6 @@ public class CategoryService {
 
   /**
    * Gets parent category.
-   *
    * @param parentId the parent id
    * @return the parent category
    */
@@ -273,9 +262,8 @@ public class CategoryService {
 
   /**
    * set ancestors.
-   *
    * @param parentId the parent id
-   * @param parent   the parent category
+   * @param parent the parent category
    * @return list of ancestors
    */
   private List<String> setAncestors(String parentId, Category parent) {
@@ -296,7 +284,6 @@ public class CategoryService {
     int length = String.valueOf(currentTime).length();
     double divisor = Math.pow(10, length);
 //    convert current time to decimal
-    String orderHint = String.valueOf(currentTime / divisor);
-    return orderHint;
+    return String.valueOf(currentTime / divisor);
   }
 }
