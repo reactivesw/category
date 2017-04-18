@@ -12,6 +12,6 @@ export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 echo "====================================================================="
 if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "addEvent" ]; then
   docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
-  docker push reactivesw/product;
+  docker push reactivesw/category;
 fi
 echo "============= end push docker image ================================="
