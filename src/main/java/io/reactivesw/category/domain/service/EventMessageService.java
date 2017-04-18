@@ -97,4 +97,17 @@ public class EventMessageService {
     LOG.debug("Exit.");
     return events;
   }
+
+
+  /**
+   * Delete events.
+   *
+   * @param messages the messages
+   */
+  @Transactional
+  public void deleteEvents(List<EventMessage> messages) {
+    LOG.debug("Enter. Message size: {}.", messages.size());
+    eventMessageRepository.delete(messages);
+    LOG.debug("Exit.");
+  }
 }

@@ -37,7 +37,7 @@ public final class EventMessageSpecification {
         return builder.or(
             builder.and(
                 // Condition1: Fetch event whose status is "PENDING", but created 1 minutes ago.
-                builder.lessThan(root.get("createdAt"), System.currentTimeMillis() - 60000),
+                builder.lessThan(root.get("createdTime"), System.currentTimeMillis() - 60000),
                 builder.equal(root.get("status"), EventStatus.PENDING.getValue())
             ),
             // Condition2: Fetch event whose status is "CREATED"

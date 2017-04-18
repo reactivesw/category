@@ -35,5 +35,4 @@ deploy:
     script: sh ./deploy/deploy.sh
     skip_cleanup: true
     on:
-#      all_branches: true
-      branch: master
+      branch: dev

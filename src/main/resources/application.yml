@@ -21,8 +21,6 @@ spring:
 io:
   reactivesw:
     message:
-      broker:
-        host: http://umasuo.com
       brokerType: google
       google:
         project:

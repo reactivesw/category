@@ -7,16 +7,15 @@ import io.reactivesw.category.infrastructure.util.EventTopics;
 import io.reactivesw.message.client.core.DefaultProducerFactory;
 import io.reactivesw.message.client.core.Message;
 import io.reactivesw.message.client.producer.Producer;
-
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * EventMessage Publisher.
@@ -55,6 +54,7 @@ public class EventPublisher {
    * Executes each 200 ms.
    */
   @Scheduled(fixedRate = 200)
+  @Transactional
   public void executor() {
 
     List<EventMessage> events = messageService.getEvents();
@@ -67,6 +67,8 @@ public class EventPublisher {
           publishEvent(event.getTopic(), message);
         }
     );
+
+    messageService.deleteEvents(events);
   }
 
   /**

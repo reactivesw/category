@@ -30,6 +30,7 @@ import javax.validation.Valid;
  */
 @RestController
 public class CategoryController {
+
   /**
    * log.
    */
@@ -48,12 +49,12 @@ public class CategoryController {
   /**
    * Instantiates a new Category controller.
    *
-   * @param categoryService     the category service
+   * @param categoryService the category service
    * @param categoryApplication the category application
    */
   @Autowired
   public CategoryController(CategoryService categoryService,
-                            CategoryApplication categoryApplication) {
+      CategoryApplication categoryApplication) {
     this.categoryService = categoryService;
     this.categoryApplication = categoryApplication;
   }
@@ -66,7 +67,7 @@ public class CategoryController {
    */
   @PostMapping(Router.CATEGORY_ROOT)
   public CategoryView createCategory(@RequestBody
-                                     @Valid CategoryDraft categoryDraft) {
+  @Valid CategoryDraft categoryDraft) {
     LOG.debug("create category : {}", categoryDraft.toString());
 
     CategoryNameValidator.validateNull(categoryDraft);
@@ -85,7 +86,7 @@ public class CategoryController {
    */
   @DeleteMapping(value = Router.CATEGORY_WITH_ID)
   public void deleteCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
-                             @RequestParam Integer version) {
+      @RequestParam Integer version) {
     LOG.debug("enter deleteCategory, id is {}, version is {}", id, version);
 
     categoryApplication.deleteCategory(id, version);
@@ -96,13 +97,13 @@ public class CategoryController {
   /**
    * Update category category.
    *
-   * @param id            the id
+   * @param id the id
    * @param updateRequest the fields
    * @return the category
    */
   @PutMapping(Router.CATEGORY_WITH_ID)
   public CategoryView updateCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
-                                     @RequestBody @Valid UpdateRequest updateRequest) {
+      @RequestBody @Valid UpdateRequest updateRequest) {
     LOG.debug("enter updateCategory,id is {}, update request is {}", id, updateRequest.toString());
 
     CategoryView result = categoryService.updateCategory(id, updateRequest.getVersion(),
