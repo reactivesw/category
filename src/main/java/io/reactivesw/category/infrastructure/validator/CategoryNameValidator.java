@@ -41,12 +41,12 @@ public final class CategoryNameValidator {
       LOG.debug("CategoryView name can not be null");
       throw new ParametersException("CategoryView name can not be null");
     }
-    for (Map.Entry<String, String> entry : draft.getName().getLocalized().entrySet()) {
-      if (StringUtils.isEmpty(entry.getValue()) || StringUtils.isEmpty(entry.getKey())) {
-        LOG.debug("CategoryView name can not be empty");
-        throw new ParametersException("CategoryView name can not be empty");
-      }
+    if (draft.getName().getLocalized().entrySet().parallelStream()
+        .anyMatch(entry -> StringUtils.isEmpty(entry.getKey()) || StringUtils.isEmpty(entry.getValue()))) {
+      LOG.debug("CategoryView name can not be empty");
+      throw new ParametersException("CategoryView name can not be empty");
     }
+
   }
 
   /**
