@@ -104,7 +104,6 @@ public class EventMessageService {
    *
    * @param messages the messages
    */
-  @Transactional
   public void deleteEvents(List<EventMessage> messages) {
     LOG.debug("Enter. Message size: {}.", messages.size());
     eventMessageRepository.delete(messages);

@@ -1,10 +1,8 @@
 package io.reactivesw.category.infrastructure.util;
 
 import com.google.common.collect.Lists;
-
 import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.domain.model.LocalizedStringValue;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,12 +39,8 @@ public final class CategoryUtils {
    * @return the category id
    */
   public static List<String> getCategoryId(List<Category> categories) {
-    List<String> idList = Lists.newArrayList();
-
-    idList = categories.stream().map(
+    return categories.stream().map(
         category -> category.getId()
     ).collect(Collectors.toList());
-
-    return idList;
   }
 }

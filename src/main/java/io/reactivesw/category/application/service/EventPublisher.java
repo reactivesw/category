@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * EventMessage Publisher.
@@ -54,7 +53,6 @@ public class EventPublisher {
    * Executes each 200 ms.
    */
   @Scheduled(fixedRate = 200)
-  @Transactional
   public void executor() {
 
     List<EventMessage> events = messageService.getEvents();
