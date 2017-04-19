@@ -46,10 +46,10 @@ public final class CategoryNameValidator {
       throw new ParametersException("CategoryView name can not be null.");
     }
     Predicate<Map.Entry<String, String>>
-        keyPredicate =
+        entryPredicate =
         (entry) -> StringUtils.isEmpty(entry.getValue()) || StringUtils.isEmpty(entry.getKey());
     if (draft.getName().getLocalized().entrySet().stream()
-        .anyMatch(entry -> keyPredicate.test(entry))) {
+        .anyMatch(entryPredicate)) {
       LOG.debug("CategoryView name can not be empty.");
       throw new ParametersException("CategoryView name can not be empty.");
     }
