@@ -1,11 +1,10 @@
 package io.reactivesw.category.infrastructure.repository;
 
 import io.reactivesw.category.domain.model.Category;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,22 +29,4 @@ public interface CategoryRepository extends JpaRepository<Category, String>,
    * @return the list
    */
   List<Category> queryCategoryByParent(String parentId);
-
-  /**
-   * Delete category by id.
-   *
-   * @param categoryIds the ids
-   */
-  @Modifying
-  @Transactional
-  @Query(value = "delete from Category c where c.id in ?1")
-  void deleteCategoryById(List<String> categoryIds);
-
-  /**
-   * Find category by slug.
-   *
-   * @param slug the slug
-   * @return the category entity
-   */
-  Category findCategoryBySlug(String slug);
 }

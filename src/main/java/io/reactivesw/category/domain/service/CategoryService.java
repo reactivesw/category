@@ -14,10 +14,10 @@ import io.reactivesw.category.infrastructure.update.UpdaterService;
 import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
 import io.reactivesw.category.infrastructure.validator.CategoryVersionValidator;
-import io.reactivesw.category.infrastructure.validator.ParentCategoryValidator;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.NotExistException;
 import io.reactivesw.model.Reference;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +33,7 @@ import java.util.List;
  */
 @Service
 public class CategoryService {
+
   /**
    * log.
    */
@@ -41,22 +42,33 @@ public class CategoryService {
   /**
    * CategoryEntity Repository.
    */
-  @Autowired
   private transient CategoryRepository categoryRepository;
 
   /**
    * category update service.
    */
-  @Autowired
   private transient UpdaterService updateService;
 
   /**
+   * Instantiates a new Category service.
+   *
+   * @param categoryRepository the category repository
+   * @param updateService the update service
+   */
+  @Autowired
+  public CategoryService(CategoryRepository categoryRepository, UpdaterService updateService) {
+    this.categoryRepository = categoryRepository;
+    this.updateService = updateService;
+  }
+
+  /**
    * Create category.
+   *
    * @param categoryDraft the category draft
    * @return the category
    */
   public CategoryView createCategory(CategoryDraft categoryDraft) {
-    LOG.debug("enter createCategory, CategoryDraft is {}", categoryDraft.toString());
+    LOG.debug("Enter createCategory, CategoryDraft is {}.", categoryDraft.toString());
 
     String parentId = getParentId(categoryDraft);
     List<Category> sameRootCategories = categoryRepository.queryCategoryByParent(parentId);
@@ -69,46 +81,50 @@ public class CategoryService {
     Category savedEntity = saveCategoryEntity(entity);
 
     CategoryView categoryView = CategoryMapper.toModel(savedEntity);
-    LOG.debug("end createCategory, new CategoryEntity is: {}", categoryView.toString());
-    //TODO send message
+
+    LOG.debug("End createCategory, new CategoryEntity is: {}.", categoryView.toString());
+
     return categoryView;
   }
 
   /**
    * Delete category by id and version.
+   *
    * @param id the id
    * @param version the version
    */
   @Transactional
-  public void deleteCategory(String id, Integer version) {
-    LOG.debug("enter deleteCategory, id:{}, version:{}", id, version);
+  public List<String> deleteCategory(String id, Integer version) {
+    LOG.debug("Enter. CategoryId: {}, version: {}.", id, version);
 
     Category entity = getById(id);
     CategoryVersionValidator.validate(entity, version);
 
-    List<Category> tatalCategoryEitities = Lists.newArrayList(entity);
+    List<Category> totalCategories = Lists.newArrayList(entity);
+
     List<Category> subCategories = categoryRepository.querySubCategoriesByAncestorId(id);
-    if (subCategories != null && !subCategories.isEmpty()) {
-      tatalCategoryEitities.addAll(subCategories);
+    if (subCategories != null) {
+      totalCategories.addAll(subCategories);
     }
 
-    categoryRepository.delete(tatalCategoryEitities);
+    List<String> result = CategoryUtils.getCategoryId(totalCategories);
 
-    //TODO send message for:
-    // remove from all those product that had that category assigned in their ProductData
+    categoryRepository.delete(totalCategories);
 
-    LOG.debug("end deleteCategory, id:{}, version:{}", id, version);
+    LOG.debug("Exit. Deleted CategoryId: {}.", result);
+    return result;
   }
 
   /**
    * Update category.
+   *
    * @param id the id
    * @param version the update request
    * @param actions the update action
    * @return the category
    */
   public CategoryView updateCategory(String id, Integer version, List<UpdateAction> actions) {
-    LOG.debug("enter updateCategory, id is {}, version is {}, update action is {}",
+    LOG.debug("Enter updateCategory, id is {}, version is {}, update action is {}.",
         id, version, actions);
 
     Category entity = getById(id);
@@ -118,24 +134,25 @@ public class CategoryService {
     //TODO send message, if slug be updated
     CategoryView result = CategoryMapper.toModel(updatedEntity);
 
-    LOG.debug("end updateCategory, updated Category is {}", result);
+    LOG.debug("End updateCategory, updated Category is {}.", result);
     return result;
   }
 
   /**
    * Gets category by id.
+   *
    * @param id the id
    * @return the category by id
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   public CategoryView getCategoryById(String id) {
-    LOG.debug("enter getCategoryById, id is {}", id);
+    LOG.debug("Enter getCategoryById, id is {}.", id);
 
     Category entity = getById(id);
 
     CategoryView result = CategoryMapper.toModel(entity);
 
-    LOG.debug("end getCategoryById, get category is : {}", result.toString());
+    LOG.debug("End getCategoryById, get category is: {}.", result.toString());
 
     return result;
   }
@@ -143,17 +160,18 @@ public class CategoryService {
   /**
    * Query category.
    * TODO: 16/12/13 queryconditions
+   *
    * @param queryConditions the QueryConditions
    * @return the paged query result
    */
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions queryConditions) {
-    LOG.debug("enter queryCategories, QueryConditions is : {}", queryConditions.toString());
+    LOG.debug("Enter queryCategories, QueryConditions is: {}.", queryConditions.toString());
 
     List<Category> entities = categoryRepository.findAll();
 
     List<CategoryView> result = CategoryMapper.toModel(entities);
 
-    LOG.debug("end queryCategories, get Categories : {}", result);
+    LOG.debug("End queryCategories, get Categories: {}.", result);
 
     PagedQueryResult<CategoryView> pagedQueryResult = new PagedQueryResult<>();
     pagedQueryResult.setResults(result);
@@ -165,6 +183,7 @@ public class CategoryService {
 
   /**
    * gete parent id by CategoryDraft.
+   *
    * @param categoryDraft the CategoryDraft
    * @return parent id
    */
@@ -179,14 +198,15 @@ public class CategoryService {
 
   /**
    * set parent id and ancestors.
+   *
    * @param entity category entity
    * @param parentId parent id
-   * @return CategoryEntity
+   * @return CategoryEntity parent and ancestors
    */
   public Category setParentAndAncestors(Category entity, String parentId) {
     List<String> ancestors = Lists.newArrayList();
     if (StringUtils.isNotBlank(parentId)) {
-      Category parent = getParentCategory(parentId);
+      Category parent = getById(parentId);
       ancestors = setAncestors(parentId, parent);
     }
     entity.setParent(parentId);
@@ -198,6 +218,7 @@ public class CategoryService {
 
   /**
    * Save category entity.
+   *
    * @param entity the entity
    * @return the category entity
    * @throws AlreadyExistException if slug is already exist and get DataIntegrityViolationException
@@ -208,14 +229,15 @@ public class CategoryService {
     try {
       savedEntity = categoryRepository.save(entity);
     } catch (DataIntegrityViolationException dataIntegrityViolationException) {
-      LOG.debug("slug is already exist", dataIntegrityViolationException);
-      throw new AlreadyExistException("Slug is already exist");
+      LOG.debug("Slug is already exist.", dataIntegrityViolationException);
+      throw new AlreadyExistException("Slug is already exist.");
     }
     return savedEntity;
   }
 
   /**
    * update category entity.
+   *
    * @param actions update actions
    * @param entity CategoryEntity
    * @return updated category entity.
@@ -231,38 +253,29 @@ public class CategoryService {
 
   /**
    * Gets category by id.
+   *
    * @param id the id
    * @return the category by id
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   private Category getById(String id) {
-    LOG.debug("enter getById, id is {}", id);
+    LOG.debug("Enter getById, id is {}.", id);
 
     Category categoryEntity = categoryRepository.findOne(id);
 
     if (categoryEntity == null) {
-      LOG.debug("fail getById, can not find category by id:{}", id);
+      LOG.debug("Fail getById, can not find category by id: {}.", id);
       throw new NotExistException("can not find category by id:" + id);
     }
 
-    LOG.debug("end getById, id is {}, get CategoryEntity:{}",
+    LOG.debug("End getById, id is {}, get CategoryEntity: {}.",
         id, categoryEntity.toString());
     return categoryEntity;
   }
 
   /**
-   * Gets parent category.
-   * @param parentId the parent id
-   * @return the parent category
-   */
-  private Category getParentCategory(String parentId) {
-    Category parent = categoryRepository.findOne(parentId);
-    ParentCategoryValidator.validate(parentId, parent);
-    return parent;
-  }
-
-  /**
    * set ancestors.
+   *
    * @param parentId the parent id
    * @param parent the parent category
    * @return list of ancestors

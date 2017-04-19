@@ -17,3 +17,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+io:
+  reactivesw:
+    message:
+      brokerType: google
+      google:
+        project:
+          id: reactivesw-project

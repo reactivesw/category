@@ -32,7 +32,7 @@ public class HealthController {
    */
   @GetMapping(Router.CATEGORY_HELTH_CHECK)
   public String healthCheck() {
-    LOG.debug("enter healthCheck");
+    LOG.debug("Enter healthCheck.");
 
     return serviceName + ", system time: " + System.currentTimeMillis();
   }

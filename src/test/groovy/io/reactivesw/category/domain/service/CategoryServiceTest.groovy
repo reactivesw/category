@@ -25,8 +25,7 @@ import spock.lang.Specification
 class CategoryServiceTest extends Specification {
     UpdaterService categoryUpdateService = Mock()
     CategoryRepository categoryRepository = Mock(CategoryRepository);
-    CategoryService categoryService = new CategoryService(categoryRepository: categoryRepository,
-            updateService: categoryUpdateService);
+    CategoryService categoryService = new CategoryService(categoryRepository, categoryUpdateService);
     def categoryEntity = new Category()
     def id = "11111111"
     def version = 1
@@ -101,20 +100,7 @@ class CategoryServiceTest extends Specification {
         thrown(ConflictException)
     }
 
-    def "test 2.3.1 : delete Category and get empty subcategory list"() {
-        given:
-        categoryEntity.version = version
-        categoryRepository.findOne(_) >> categoryEntity
-        categoryRepository.querySubCategoriesByAncestorId(_) >> Lists.newArrayList()
-
-        when:
-        categoryService.deleteCategory(id, version)
-
-        then:
-        true
-    }
-
-    def "test 2.3.2 : delete Category and get null subcategory list"() {
+    def "test 2.3 : delete Category and get null subcategory list"() {
         given:
         categoryEntity.version = version
         categoryRepository.findOne(_) >> categoryEntity

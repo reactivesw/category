@@ -6,11 +6,13 @@ import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.domain.model.LocalizedStringValue;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Utils for category.
  */
 public final class CategoryUtils {
+
   /**
    * Instantiates a new CategoryView update.
    */
@@ -19,6 +21,7 @@ public final class CategoryUtils {
 
   /**
    * get all names from list of CategoryEntity.
+   *
    * @param categories list of CategoryEntity
    * @return list of LocalizedStringEntity
    */
@@ -34,6 +37,7 @@ public final class CategoryUtils {
 
   /**
    * Get order hint by current system time.
+   *
    * @return order hint
    */
   public static String getOrderHint() {
@@ -43,4 +47,17 @@ public final class CategoryUtils {
     //    convert current time to decimal
     return String.valueOf(currentTime / divisor);
   }
+
+  /**
+   * Gets category id.
+   *
+   * @param categories the categories
+   * @return the category id
+   */
+  public static List<String> getCategoryId(List<Category> categories) {
+    return categories.stream().map(
+        category -> category.getId()
+    ).collect(Collectors.toList());
+  }
+
 }

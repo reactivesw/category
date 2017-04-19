@@ -2,11 +2,13 @@ package io.reactivesw.category;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * Sprint boot application.
+ * Application starter.
  */
 @SpringBootApplication(scanBasePackages = "io.reactivesw")
+@EnableScheduling
 public class Application {
 
   /**
