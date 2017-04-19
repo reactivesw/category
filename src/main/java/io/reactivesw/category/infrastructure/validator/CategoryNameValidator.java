@@ -7,6 +7,7 @@ import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.ParametersException;
 import io.reactivesw.model.LocalizedString;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import java.util.function.Predicate;
  * Created by Davis on 16/12/6.
  */
 public final class CategoryNameValidator {
+
   /**
    * log.
    */
@@ -32,6 +34,7 @@ public final class CategoryNameValidator {
 
   /**
    * Validate null.
+   *
    * @param draft the draft
    */
   public static void validateNull(CategoryDraft draft) {
@@ -44,7 +47,7 @@ public final class CategoryNameValidator {
     }
     Predicate<Map.Entry<String, String>>
         keyPredicate =
-            (entry) -> StringUtils.isEmpty(entry.getValue()) || StringUtils.isEmpty(entry.getKey());
+        (entry) -> StringUtils.isEmpty(entry.getValue()) || StringUtils.isEmpty(entry.getKey());
     if (draft.getName().getLocalized().entrySet().stream()
         .anyMatch(entry -> keyPredicate.test(entry))) {
       LOG.debug("CategoryView name can not be empty.");
@@ -55,6 +58,7 @@ public final class CategoryNameValidator {
 
   /**
    * Equal validate.
+   *
    * @param name the name
    * @param sameRootCategories the same root categories
    */
