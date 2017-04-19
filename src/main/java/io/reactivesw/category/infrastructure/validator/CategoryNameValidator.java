@@ -7,6 +7,7 @@ import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.ParametersException;
 import io.reactivesw.model.LocalizedString;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,7 @@ import java.util.Map;
  * Validator for category name.
  */
 public final class CategoryNameValidator {
+
   /**
    * log.
    */
@@ -46,7 +48,7 @@ public final class CategoryNameValidator {
   /**
    * Equal validate.
    *
-   * @param name               the name
+   * @param name the name
    * @param sameRootCategories the same root categories
    */
   public static void validateEqual(LocalizedString name, List<Category> sameRootCategories) {

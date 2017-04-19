@@ -64,13 +64,9 @@ When update category order, what we need to do is update one category
     the result: (0.149199068195555 + 0) / 2 = 0.074599534097775
     ```
 
-3. if change the category to the last one, the new `orderHint` will be the median of the original last one `orderHint` and `1`, example:
-
-    ```
-    the orginal last one orderHint: 0.149199068195555
-
-    the result: (0.149199068195555 + 1) / 2 = 0.574599534097775
-    ```
+3. if change the category to the last one, the new `orderHint` will be recreate,
+   so just the orderHint of last category will be sent to server which
+   determines the category is changed to the last one
 
 ### 2.2 Multilevel Design
 
