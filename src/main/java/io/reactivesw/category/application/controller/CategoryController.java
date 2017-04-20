@@ -28,7 +28,6 @@ import javax.validation.Valid;
 /**
  * Category controller.
  */
-
 @RestController
 public class CategoryController {
 
