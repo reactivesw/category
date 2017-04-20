@@ -13,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SetMetaDescription implements UpdateAction {
+
   /**
    * The Meta description.
    */

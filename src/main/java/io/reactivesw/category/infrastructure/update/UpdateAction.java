@@ -16,10 +16,9 @@ import io.reactivesw.category.application.model.action.SetSlug;
 /**
  * configurations for common update actions that will be used in more thant one service
  * and this action also extends other action configure in each service.
- *
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "action")
-@JsonSubTypes( {
+@JsonSubTypes({
     @JsonSubTypes.Type(value = SetName.class, name = "setName"),
     @JsonSubTypes.Type(value = SetSlug.class, name = "setSlug"),
     @JsonSubTypes.Type(value = SetDescription.class, name = "setDescription"),
@@ -30,6 +29,7 @@ import io.reactivesw.category.application.model.action.SetSlug;
     @JsonSubTypes.Type(value = SetMetaDescription.class, name = "setMetaDescription"),
     @JsonSubTypes.Type(value = SetMetaKeywords.class, name = "setMetaKeywords")})
 public interface UpdateAction {
+
   /**
    * get action name.
    *

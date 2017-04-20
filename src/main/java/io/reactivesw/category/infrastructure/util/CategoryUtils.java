@@ -40,7 +40,7 @@ public final class CategoryUtils {
    *
    * @return order hint
    */
-  public static String getOrderHint() {
+  public static String createOrderHint() {
     long currentTime = System.currentTimeMillis();
     int length = String.valueOf(currentTime).length();
     double divisor = Math.pow(10, length);

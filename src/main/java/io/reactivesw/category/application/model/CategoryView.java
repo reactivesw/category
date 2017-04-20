@@ -16,13 +16,13 @@ import java.util.List;
 
 /**
  * category model.
- *
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryView {
+
   /**
    * The unique ID of the category.
    */

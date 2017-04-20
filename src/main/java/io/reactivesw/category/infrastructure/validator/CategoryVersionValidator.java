@@ -33,7 +33,7 @@ public final class CategoryVersionValidator {
    */
   public static void validate(Category entity, Integer version) {
     if (!Objects.equals(version, entity.getVersion())) {
-      LOG.debug("Version not match, input version:{}, entity version: {}.",
+      LOG.debug("Version not match, input version: {}, entity version: {}.",
           version, entity.getVersion());
       throw new ConflictException("Version not match.");
     }

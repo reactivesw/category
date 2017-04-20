@@ -96,7 +96,7 @@ TODO
 |-|-|-|
 | action | String | required, set as `setOrderHint` |
 | previousOrderHint | String | required, NotNull |
-| nextOrderHint | String | required, NotNull(but if category is changed to be the last one, this paremeter should be empty) |
+| nextOrderHint | String | if category is changed to be the last one, this paremeter should be empty, otherwise, required |
 
 #### SetParent
 

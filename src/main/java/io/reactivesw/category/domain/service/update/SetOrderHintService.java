@@ -30,8 +30,8 @@ public class SetOrderHintService implements Updater<Category, UpdateAction> {
     SetOrderHint setOrderHint = (SetOrderHint) action;
     CategoryOrderHintValidator.validateEmptyAndNumeric(setOrderHint);
     //    Category is changed to the last one.
-    if (StringUtils.isEmpty(setOrderHint.getNextOrderHint())) {
-      entity.setOrderHint(CategoryUtils.getOrderHint());
+    if (StringUtils.isBlank(setOrderHint.getNextOrderHint())) {
+      entity.setOrderHint(CategoryUtils.createOrderHint());
     } else {
       entity.setOrderHint(calculateMedianOfOrderHint(setOrderHint.getPreviousOrderHint(),
           setOrderHint.getNextOrderHint()));

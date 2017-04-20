@@ -75,7 +75,7 @@ public class CategoryService {
     CategoryNameValidator.validateEqual(categoryDraft.getName(), sameRootCategories);
 
     Category entity = CategoryMapper.toEntity(categoryDraft);
-    entity.setOrderHint(CategoryUtils.getOrderHint());
+    entity.setOrderHint(CategoryUtils.createOrderHint());
     setParentAndAncestors(entity, parentId);
 
     Category savedEntity = saveCategoryEntity(entity);

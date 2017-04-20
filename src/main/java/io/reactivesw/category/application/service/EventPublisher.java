@@ -76,7 +76,7 @@ public class EventPublisher {
    * publish an event to a topic.
    *
    * @param topicName topic name
-   * @param message event
+   * @param message   event
    */
   private void publishEvent(String topicName, Message message) {
 

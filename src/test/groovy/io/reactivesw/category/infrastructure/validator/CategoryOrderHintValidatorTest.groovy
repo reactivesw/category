@@ -11,7 +11,7 @@ class CategoryOrderHintValidatorTest extends Specification {
         given: "prepare data"
         SetOrderHint setOrderHint = new SetOrderHint()
         setOrderHint.previousOrderHint = ""
-        setOrderHint.nextOrderHint = CategoryUtils.getOrderHint()
+        setOrderHint.nextOrderHint = CategoryUtils.createOrderHint()
 
         when: "call function"
         CategoryOrderHintValidator.validateEmptyAndNumeric(setOrderHint)
@@ -24,7 +24,7 @@ class CategoryOrderHintValidatorTest extends Specification {
         given: "prepare data"
         SetOrderHint setOrderHint = new SetOrderHint()
         setOrderHint.previousOrderHint = "this-is-not-a-number"
-        setOrderHint.nextOrderHint = CategoryUtils.getOrderHint()
+        setOrderHint.nextOrderHint = CategoryUtils.createOrderHint()
 
         when: "call function"
         CategoryOrderHintValidator.validateEmptyAndNumeric(setOrderHint)
@@ -36,8 +36,8 @@ class CategoryOrderHintValidatorTest extends Specification {
     def "Test3: the two orderHint in setOrderHint of category is number, should be true"() {
         given: "prepare data"
         SetOrderHint setOrderHint = new SetOrderHint()
-        setOrderHint.previousOrderHint = CategoryUtils.getOrderHint()
-        setOrderHint.nextOrderHint = CategoryUtils.getOrderHint()
+        setOrderHint.previousOrderHint = CategoryUtils.createOrderHint()
+        setOrderHint.nextOrderHint = CategoryUtils.createOrderHint()
 
         when: "call function"
         CategoryOrderHintValidator.validateEmptyAndNumeric(setOrderHint)
@@ -49,7 +49,7 @@ class CategoryOrderHintValidatorTest extends Specification {
     def "Test4: the previousOrderHint in setOrderHint is number and the nextOrderHint is empty, should be true"() {
         given: "prepare data"
         SetOrderHint setOrderHint = new SetOrderHint()
-        setOrderHint.previousOrderHint = CategoryUtils.getOrderHint()
+        setOrderHint.previousOrderHint = CategoryUtils.createOrderHint()
         setOrderHint.nextOrderHint = ""
 
         when: "call function"
