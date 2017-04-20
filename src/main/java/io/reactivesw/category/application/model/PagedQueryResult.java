@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Created by Davis on 16/12/10.
+ * The result of pagedQuery.
  *
  * @param <T> the type parameter
  */

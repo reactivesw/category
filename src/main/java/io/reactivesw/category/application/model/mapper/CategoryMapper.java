@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Davis on 16/11/28.
+ * Category object converter.
  */
 public final class CategoryMapper {
 

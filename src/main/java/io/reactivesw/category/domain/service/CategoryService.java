@@ -29,10 +29,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by Davis on 16/11/28.
+ * Category service.
  */
 @Service
 public class CategoryService {
+
   /**
    * log.
    */
@@ -52,7 +53,7 @@ public class CategoryService {
    * Instantiates a new Category service.
    *
    * @param categoryRepository the category repository
-   * @param updateService      the update service
+   * @param updateService the update service
    */
   @Autowired
   public CategoryService(CategoryRepository categoryRepository, UpdaterService updateService) {
@@ -74,6 +75,7 @@ public class CategoryService {
     CategoryNameValidator.validateEqual(categoryDraft.getName(), sameRootCategories);
 
     Category entity = CategoryMapper.toEntity(categoryDraft);
+    entity.setOrderHint(CategoryUtils.createOrderHint());
     setParentAndAncestors(entity, parentId);
 
     Category savedEntity = saveCategoryEntity(entity);
@@ -88,7 +90,7 @@ public class CategoryService {
   /**
    * Delete category by id and version.
    *
-   * @param id      the id
+   * @param id the id
    * @param version the version
    */
   @Transactional
@@ -116,7 +118,7 @@ public class CategoryService {
   /**
    * Update category.
    *
-   * @param id      the id
+   * @param id the id
    * @param version the update request
    * @param actions the update action
    * @return the category
@@ -197,7 +199,7 @@ public class CategoryService {
   /**
    * set parent id and ancestors.
    *
-   * @param entity   category entity
+   * @param entity category entity
    * @param parentId parent id
    * @return CategoryEntity parent and ancestors
    */
@@ -237,7 +239,7 @@ public class CategoryService {
    * update category entity.
    *
    * @param actions update actions
-   * @param entity  CategoryEntity
+   * @param entity CategoryEntity
    * @return updated category entity.
    */
   @Transactional
@@ -275,7 +277,7 @@ public class CategoryService {
    * set ancestors.
    *
    * @param parentId the parent id
-   * @param parent   the parent category
+   * @param parent the parent category
    * @return list of ancestors
    */
   private List<String> setAncestors(String parentId, Category parent) {
@@ -286,4 +288,5 @@ public class CategoryService {
     ancestors.add(parentId);
     return ancestors;
   }
+
 }

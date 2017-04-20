@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by umasuo on 17/3/2.
+ * Handle exception thrown by category.
  */
 @Component
 public class CategoryExceptionHandler extends ExceptionHandler implements HandlerExceptionResolver {

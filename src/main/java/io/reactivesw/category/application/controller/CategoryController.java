@@ -26,7 +26,7 @@ import javax.validation.Valid;
 
 
 /**
- * Created by Davis on 16/11/18.
+ * Category controller.
  */
 @RestController
 public class CategoryController {

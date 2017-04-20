@@ -2,6 +2,7 @@ package io.reactivesw.category.domain.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,7 +26,6 @@ import javax.persistence.Version;
 
 /**
  * CategoryEntity Entity.
- * Created by Davis on 16/11/13.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

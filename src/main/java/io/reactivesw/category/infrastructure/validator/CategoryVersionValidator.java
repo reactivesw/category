@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 
 /**
- * Created by Davis on 17/1/9.
+ * Validator for category version.
  */
 public final class CategoryVersionValidator {
 

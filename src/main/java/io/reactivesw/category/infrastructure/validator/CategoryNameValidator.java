@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 /**
- * Created by Davis on 16/12/6.
+ * Validator for category name.
  */
 public final class CategoryNameValidator {
 

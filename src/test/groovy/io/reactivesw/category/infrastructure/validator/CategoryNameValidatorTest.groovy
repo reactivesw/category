@@ -6,7 +6,7 @@ import io.reactivesw.model.LocalizedString
 import spock.lang.Specification
 
 /**
- * Created by Davis on 17/3/28.
+ *
  */
 class CategoryNameValidatorTest extends Specification {
     CategoryNameValidator categoryNameValidator = new CategoryNameValidator()
