@@ -18,7 +18,7 @@ import java.util.List;
 public class CategoryApplication {
 
   /**
-   * logger.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryApplication.class);
 

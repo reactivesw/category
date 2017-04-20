@@ -70,7 +70,7 @@ public final class LocalizedStringMapper {
 
 
   /**
-   * Model to entity
+   * Model to entity.
    * Default is null set.
    *
    * @param localizedString the localized string

@@ -24,7 +24,7 @@ public final class CategoryMapper {
   }
 
   /**
-   * Convert entity to category category.
+   * Convert entity to category.
    *
    * @param entity the entity
    * @return the category

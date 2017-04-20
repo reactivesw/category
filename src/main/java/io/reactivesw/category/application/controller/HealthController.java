@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
 
   /**
-   * logger.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(HealthController.class);
 

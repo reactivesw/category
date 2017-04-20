@@ -32,7 +32,7 @@ import javax.validation.Valid;
 public class CategoryController {
 
   /**
-   * logger.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
 

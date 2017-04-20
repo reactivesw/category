@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 public class EventMessageService {
   /**
-   * logger.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventMessageService.class);
 
