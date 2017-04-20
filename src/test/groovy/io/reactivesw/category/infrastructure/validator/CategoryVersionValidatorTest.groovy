@@ -5,7 +5,7 @@ import io.reactivesw.exception.ConflictException
 import spock.lang.Specification
 
 /**
- * Created by Davis on 17/3/28.
+ *
  */
 class CategoryVersionValidatorTest extends Specification {
     CategoryVersionValidator validator = new CategoryVersionValidator()

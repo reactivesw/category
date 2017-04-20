@@ -20,7 +20,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
 
 /**
- * Created by Davis on 16/11/28.
+ *
  */
 class CategoryServiceTest extends Specification {
     UpdaterService categoryUpdateService = Mock()

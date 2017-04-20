@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * Created by Davis on 16/11/17.
+ * Category draft is used to transfer data.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

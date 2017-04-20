@@ -8,7 +8,7 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set slug when update category.
  */
 @Service(value = CategoryActionUtils.SET_SLUG)
 public class SetSlugService implements Updater<Category, UpdateAction> {

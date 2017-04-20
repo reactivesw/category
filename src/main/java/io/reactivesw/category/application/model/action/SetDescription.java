@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by Davis on 16/12/29.
+ * SetDescription for updating category.
  */
 @Getter
 @Setter
