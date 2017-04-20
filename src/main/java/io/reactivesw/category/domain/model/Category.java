@@ -25,7 +25,7 @@ import javax.persistence.Version;
 
 /**
  * CategoryEntity Entity.
- * Created by Davis on 16/11/13.
+ *
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

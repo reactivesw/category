@@ -3,7 +3,7 @@ package io.reactivesw.category.infrastructure.util;
 import org.springframework.data.domain.AuditorAware;
 
 /**
- * Created by Davis on 17/3/7.
+ * Auditor aware for zone date.
  */
 public class ZonedDateTimeAuditorAware implements AuditorAware<String> {
 

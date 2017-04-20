@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by umasuo on 17/2/21.
+ * Controller to check health status of service.
  */
 @RestController
 public class HealthController {
@@ -32,7 +32,7 @@ public class HealthController {
    */
   @GetMapping(Router.CATEGORY_HELTH_CHECK)
   public String healthCheck() {
-    LOG.debug("enter healthCheck");
+    LOG.debug("Enter healthCheck.");
 
     return serviceName + ", system time: " + System.currentTimeMillis();
   }

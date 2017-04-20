@@ -8,7 +8,7 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set externalId when updating category.
  */
 @Service(value = CategoryActionUtils.SET_EXTERNAL_ID)
 public class SetExternalIdService implements Updater<Category, UpdateAction> {

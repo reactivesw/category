@@ -15,7 +15,7 @@ public enum EventStatus {
   PENDING(1);
 
   /**
-   * int value;
+   * int value.
    */
   private int value;
 

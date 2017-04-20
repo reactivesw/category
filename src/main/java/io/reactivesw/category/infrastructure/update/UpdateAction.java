@@ -16,7 +16,7 @@ import io.reactivesw.category.application.model.action.SetSlug;
 /**
  * configurations for common update actions that will be used in more thant one service
  * and this action also extends other action configure in each service.
- * Created by umasuo on 16/11/21.
+ *
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "action")
 @JsonSubTypes( {

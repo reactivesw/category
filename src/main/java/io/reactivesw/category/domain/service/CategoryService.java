@@ -29,10 +29,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by Davis on 16/11/28.
+ * Category service.
  */
 @Service
 public class CategoryService {
+
   /**
    * log.
    */
@@ -52,7 +53,7 @@ public class CategoryService {
    * Instantiates a new Category service.
    *
    * @param categoryRepository the category repository
-   * @param updateService      the update service
+   * @param updateService the update service
    */
   @Autowired
   public CategoryService(CategoryRepository categoryRepository, UpdaterService updateService) {
@@ -67,19 +68,21 @@ public class CategoryService {
    * @return the category
    */
   public CategoryView createCategory(CategoryDraft categoryDraft) {
-    LOG.debug("enter createCategory, CategoryDraft is {}", categoryDraft.toString());
+    LOG.debug("Enter createCategory, CategoryDraft is {}.", categoryDraft.toString());
 
     String parentId = getParentId(categoryDraft);
     List<Category> sameRootCategories = categoryRepository.queryCategoryByParent(parentId);
     CategoryNameValidator.validateEqual(categoryDraft.getName(), sameRootCategories);
 
     Category entity = CategoryMapper.toEntity(categoryDraft);
+    entity.setOrderHint(CategoryUtils.getOrderHint());
     setParentAndAncestors(entity, parentId);
 
     Category savedEntity = saveCategoryEntity(entity);
 
     CategoryView categoryView = CategoryMapper.toModel(savedEntity);
-    LOG.debug("end createCategory, new CategoryEntity is: {}", categoryView.toString());
+
+    LOG.debug("End createCategory, new CategoryEntity is: {}.", categoryView.toString());
 
     return categoryView;
   }
@@ -87,7 +90,7 @@ public class CategoryService {
   /**
    * Delete category by id and version.
    *
-   * @param id      the id
+   * @param id the id
    * @param version the version
    */
   @Transactional
@@ -115,13 +118,13 @@ public class CategoryService {
   /**
    * Update category.
    *
-   * @param id      the id
+   * @param id the id
    * @param version the update request
    * @param actions the update action
    * @return the category
    */
   public CategoryView updateCategory(String id, Integer version, List<UpdateAction> actions) {
-    LOG.debug("enter updateCategory, id is {}, version is {}, update action is {}",
+    LOG.debug("Enter updateCategory, id is {}, version is {}, update action is {}.",
         id, version, actions);
 
     Category entity = getById(id);
@@ -131,7 +134,7 @@ public class CategoryService {
     //TODO send message, if slug be updated
     CategoryView result = CategoryMapper.toModel(updatedEntity);
 
-    LOG.debug("end updateCategory, updated Category is {}", result);
+    LOG.debug("End updateCategory, updated Category is {}.", result);
     return result;
   }
 
@@ -143,13 +146,13 @@ public class CategoryService {
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   public CategoryView getCategoryById(String id) {
-    LOG.debug("enter getCategoryById, id is {}", id);
+    LOG.debug("Enter getCategoryById, id is {}.", id);
 
     Category entity = getById(id);
 
     CategoryView result = CategoryMapper.toModel(entity);
 
-    LOG.debug("end getCategoryById, get category is : {}", result.toString());
+    LOG.debug("End getCategoryById, get category is: {}.", result.toString());
 
     return result;
   }
@@ -162,13 +165,13 @@ public class CategoryService {
    * @return the paged query result
    */
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions queryConditions) {
-    LOG.debug("enter queryCategories, QueryConditions is : {}", queryConditions.toString());
+    LOG.debug("Enter queryCategories, QueryConditions is: {}.", queryConditions.toString());
 
     List<Category> entities = categoryRepository.findAll();
 
     List<CategoryView> result = CategoryMapper.toModel(entities);
 
-    LOG.debug("end queryCategories, get Categories : {}", result);
+    LOG.debug("End queryCategories, get Categories: {}.", result);
 
     PagedQueryResult<CategoryView> pagedQueryResult = new PagedQueryResult<>();
     pagedQueryResult.setResults(result);
@@ -196,7 +199,7 @@ public class CategoryService {
   /**
    * set parent id and ancestors.
    *
-   * @param entity   category entity
+   * @param entity category entity
    * @param parentId parent id
    * @return CategoryEntity parent and ancestors
    */
@@ -226,8 +229,8 @@ public class CategoryService {
     try {
       savedEntity = categoryRepository.save(entity);
     } catch (DataIntegrityViolationException dataIntegrityViolationException) {
-      LOG.debug("slug is already exist", dataIntegrityViolationException);
-      throw new AlreadyExistException("Slug is already exist");
+      LOG.debug("Slug is already exist.", dataIntegrityViolationException);
+      throw new AlreadyExistException("Slug is already exist.");
     }
     return savedEntity;
   }
@@ -236,7 +239,7 @@ public class CategoryService {
    * update category entity.
    *
    * @param actions update actions
-   * @param entity  CategoryEntity
+   * @param entity CategoryEntity
    * @return updated category entity.
    */
   @Transactional
@@ -256,16 +259,16 @@ public class CategoryService {
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   private Category getById(String id) {
-    LOG.debug("enter getById, id is {}", id);
+    LOG.debug("Enter getById, id is {}.", id);
 
     Category categoryEntity = categoryRepository.findOne(id);
 
     if (categoryEntity == null) {
-      LOG.debug("fail getById, can not find category by id:{}", id);
+      LOG.debug("Fail getById, can not find category by id: {}.", id);
       throw new NotExistException("can not find category by id:" + id);
     }
 
-    LOG.debug("end getById, id is {}, get CategoryEntity:{}",
+    LOG.debug("End getById, id is {}, get CategoryEntity: {}.",
         id, categoryEntity.toString());
     return categoryEntity;
   }
@@ -274,7 +277,7 @@ public class CategoryService {
    * set ancestors.
    *
    * @param parentId the parent id
-   * @param parent   the parent category
+   * @param parent the parent category
    * @return list of ancestors
    */
   private List<String> setAncestors(String parentId, Category parent) {
@@ -285,4 +288,5 @@ public class CategoryService {
     ancestors.add(parentId);
     return ancestors;
   }
+
 }

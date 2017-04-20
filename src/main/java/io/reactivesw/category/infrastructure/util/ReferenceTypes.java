@@ -1,7 +1,7 @@
 package io.reactivesw.category.infrastructure.util;
 
 /**
- * Created by Davis on 16/11/16.
+ * Reference Types.
  */
 public enum ReferenceTypes {
 
