@@ -5,6 +5,7 @@ import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.infrastructure.update.UpdateAction;
 import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
 import io.reactivesw.category.infrastructure.util.CategoryUtils;
+import io.reactivesw.category.infrastructure.validator.CategoryOrderHintValidator;
 import io.reactivesw.model.Updater;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +28,7 @@ public class SetOrderHintService implements Updater<Category, UpdateAction> {
   @Override
   public void handle(Category entity, UpdateAction action) {
     SetOrderHint setOrderHint = (SetOrderHint) action;
+    CategoryOrderHintValidator.validateEmptyAndNumeric(setOrderHint);
     //    Category is changed to the last one.
     if (StringUtils.isEmpty(setOrderHint.getNextOrderHint())) {
       entity.setOrderHint(CategoryUtils.getOrderHint());
