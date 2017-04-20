@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service(value = CategoryActionUtils.SET_META_DESCRIPTION)
 public class SetMetaDescriptionService implements Updater<Category, UpdateAction> {
   /**
-   * set meta description.
+   * Set meta description.
    * @param entity E
    * @param action UpdateAction
    */

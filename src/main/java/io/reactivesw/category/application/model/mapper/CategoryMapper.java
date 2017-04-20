@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
 public final class CategoryMapper {
 
   /**
-   * constructor.
+   * Constructor.
    */
   private CategoryMapper() {
   }
 
   /**
-   * Map entity to category category.
+   * Convert entity to category category.
    *
    * @param entity the entity
    * @return the category
@@ -58,7 +58,7 @@ public final class CategoryMapper {
   }
 
   /**
-   * convert List of CategoryEntity to List of Category.
+   * Convert List of CategoryEntity to List of Category.
    *
    * @param entities the List of CategoryEntity
    * @return the List of Category
@@ -71,7 +71,7 @@ public final class CategoryMapper {
 
 
   /**
-   * mapper Draft to category entity.
+   * Convert CategoryDraft to category entity.
    *
    * @param model the draft
    * @return the category entity
@@ -92,7 +92,7 @@ public final class CategoryMapper {
   }
 
   /**
-   * transfer List of ancestor ids to List of Reference about category.
+   * Convert List of ancestor ids to List of Reference about category.
    *
    * @param ancestors list of ancestor ids
    * @return list of Reference

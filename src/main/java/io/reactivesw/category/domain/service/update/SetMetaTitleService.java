@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class SetMetaTitleService implements Updater<Category, UpdateAction> {
 
   /**
-   * set meta title.
+   * Set meta title.
    *
    * @param entity E
    * @param action UpdateAction

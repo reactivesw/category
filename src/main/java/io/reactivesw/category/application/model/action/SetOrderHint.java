@@ -7,11 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * SetOrderHint for updating service.
+ * SetOrderHint is used to update service.
  */
 @Getter
 @Setter
 public class SetOrderHint implements UpdateAction {
+
   /**
    * The previous order hint.
    */

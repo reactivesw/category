@@ -25,13 +25,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class EventPublisher {
 
   /**
-   * log.
+   * logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventPublisher.class);
 
 
   /**
-   * producer map.
+   * Producer map.
    */
   private transient final Map<String, Producer> producerMap = new ConcurrentHashMap<>();
 
@@ -52,7 +52,7 @@ public class EventPublisher {
   }
 
   /**
-   * executor.
+   * Executor.
    * Executes each 200 ms.
    */
   @Scheduled(fixedRate = 200)
@@ -73,10 +73,10 @@ public class EventPublisher {
   }
 
   /**
-   * publish an event to a topic.
+   * Publish an event to a topic.
    *
    * @param topicName topic name
-   * @param message   event
+   * @param message event
    */
   private void publishEvent(String topicName, Message message) {
 

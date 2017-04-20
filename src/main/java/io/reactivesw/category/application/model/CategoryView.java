@@ -15,7 +15,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
- * category model.
+ * Category model.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -34,7 +34,7 @@ public class CategoryView {
   private Integer version;
 
   /**
-   * create time.
+   * Create time.
    */
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
   private ZonedDateTime createdAt;

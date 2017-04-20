@@ -22,7 +22,7 @@ public class UpdaterService implements Updater<Category, UpdateAction> {
   private transient ApplicationContext context;
 
   /**
-   * put the value in action to entity.
+   * Put the value in action to entity.
    *
    * @param entity E
    * @param action UpdateAction
@@ -34,7 +34,7 @@ public class UpdaterService implements Updater<Category, UpdateAction> {
   }
 
   /**
-   * get mapper.
+   * Get mapper.
    *
    * @param action UpdateAction
    * @return ZoneUpdateMapper

@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
 
   /**
-   * log.
+   * logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(HealthController.class);
 
   /**
-   * service name.
+   * Service name.
    */
   @Value("${spring.application.name}")
   private transient String serviceName;
 
   /**
-   * this api is used for health check.
+   * This api is used to check health.
    *
    * @return service name.
    */

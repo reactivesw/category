@@ -35,7 +35,7 @@ import javax.persistence.Version;
 public class Category {
 
   /**
-   * Id.
+   * The id.
    */
   @Id
   @GeneratedValue(generator = "uuid")
@@ -58,68 +58,68 @@ public class Category {
   private ZonedDateTime lastModifiedAt;
 
   /**
-   * version.
+   * The version.
    */
   @Version
   @Column(name = "version")
   private Integer version;
 
   /**
-   * The Name.
+   * The name.
    */
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<LocalizedStringValue> name;
 
   /**
-   * slug.
+   * The slug.
    */
   @Column(length = 256, unique = true)
   private String slug;
 
   /**
-   * The Description.
+   * The description.
    */
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private Set<LocalizedStringValue> description;
 
   /**
-   * ancestors.
+   * The ancestors.
    */
   @ElementCollection
   private List<String> ancestors;
 
   /**
-   * parent id.
+   * The parent id.
    */
   @Column
   private String parent;
 
   /**
-   * order hint.
+   * The order hint.
    */
   @Column(name = "order_hint")
   private String orderHint;
 
   /**
-   * external id.
+   * The external id.
    */
   @Column(name = "external_id")
   private String externalId;
 
   /**
-   * meta title.
+   * The meta title.
    */
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private Set<LocalizedStringValue> metaTitle;
 
   /**
-   * meta description.
+   * The meta description.
    */
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private Set<LocalizedStringValue> metaDescription;
 
   /**
-   * meta key works.
+   * The meta key works.
    */
   @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   private Set<LocalizedStringValue> metaKeyWords;

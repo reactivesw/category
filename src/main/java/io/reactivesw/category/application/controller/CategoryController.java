@@ -32,7 +32,7 @@ import javax.validation.Valid;
 public class CategoryController {
 
   /**
-   * log.
+   * logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
 
@@ -60,7 +60,7 @@ public class CategoryController {
   }
 
   /**
-   * Create category category.
+   * Create category.
    *
    * @param categoryDraft the draft
    * @return the category
@@ -95,7 +95,7 @@ public class CategoryController {
   }
 
   /**
-   * Update category category.
+   * Update category.
    *
    * @param id the id
    * @param updateRequest the fields

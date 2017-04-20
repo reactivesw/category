@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 public class EventMessageService {
   /**
-   * log.
+   * logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventMessageService.class);
 
@@ -35,7 +35,7 @@ public class EventMessageService {
 
 
   /**
-   * json serializer.
+   * Json serializer.
    */
   private transient static JsonSerializer jsonSerializer = new JsonSerializer();
 

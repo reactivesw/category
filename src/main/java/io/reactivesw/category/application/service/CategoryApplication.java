@@ -16,8 +16,9 @@ import java.util.List;
  */
 @Service
 public class CategoryApplication {
+
   /**
-   * log.
+   * logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryApplication.class);
 
@@ -34,7 +35,7 @@ public class CategoryApplication {
   /**
    * Instantiates a new Category application.
    *
-   * @param categoryService     the category service
+   * @param categoryService the category service
    * @param eventMessageService the event message service
    */
   @Autowired

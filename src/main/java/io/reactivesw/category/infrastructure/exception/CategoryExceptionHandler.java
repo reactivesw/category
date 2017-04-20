@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CategoryExceptionHandler extends ExceptionHandler implements HandlerExceptionResolver {
 
   /**
-   * exception handle method.
+   * Exception handle method.
    * @param request HttpServletRequest
    * @param response HttpServletResponse
    * @param handler Object

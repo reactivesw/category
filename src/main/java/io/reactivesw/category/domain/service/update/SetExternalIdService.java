@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class SetExternalIdService implements Updater<Category, UpdateAction> {
 
   /**
-   * set external id.
+   * Set external id.
    *
    * @param entity E
    * @param action UpdateAction

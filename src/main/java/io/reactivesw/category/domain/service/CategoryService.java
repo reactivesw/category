@@ -45,7 +45,7 @@ public class CategoryService {
   private transient CategoryRepository categoryRepository;
 
   /**
-   * category update service.
+   * Category update service.
    */
   private transient UpdaterService updateService;
 
@@ -182,7 +182,7 @@ public class CategoryService {
 
 
   /**
-   * gete parent id by CategoryDraft.
+   * Get parent id by CategoryDraft.
    *
    * @param categoryDraft the CategoryDraft
    * @return parent id
@@ -197,7 +197,7 @@ public class CategoryService {
   }
 
   /**
-   * set parent id and ancestors.
+   * Set parent id and ancestors.
    *
    * @param entity category entity
    * @param parentId parent id
@@ -236,7 +236,7 @@ public class CategoryService {
   }
 
   /**
-   * update category entity.
+   * Update category entity.
    *
    * @param actions update actions
    * @param entity CategoryEntity
@@ -274,7 +274,7 @@ public class CategoryService {
   }
 
   /**
-   * set ancestors.
+   * Set ancestors.
    *
    * @param parentId the parent id
    * @param parent the parent category

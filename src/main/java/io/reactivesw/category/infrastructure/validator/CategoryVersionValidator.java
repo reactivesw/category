@@ -14,7 +14,7 @@ import java.util.Objects;
 public final class CategoryVersionValidator {
 
   /**
-   * log.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryVersionValidator.class);
 
@@ -25,7 +25,7 @@ public final class CategoryVersionValidator {
   }
 
   /**
-   * judge entity and version.
+   * Judge entity and version.
    *
    * @param entity the CategoryEntity
    * @param version the version

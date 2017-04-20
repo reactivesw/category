@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * SetMetaDescription for updating category.
+ * SetMetaDescription is used to update category.
  */
 @Getter
 @Setter
@@ -20,7 +20,7 @@ public class SetMetaDescription implements UpdateAction {
   private LocalizedString metaDescription;
 
   /**
-   * get update service name.
+   * Get update service name.
    *
    * @return update service name
    */
