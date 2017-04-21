@@ -60,16 +60,18 @@ public class EventPublisher {
 
     List<EventMessage> events = messageService.getEvents();
 
-    events.stream().forEach(
-        event -> {
-          Message message = Message.build(event.getId(), null,
-              event.getCreatedTime(), event.getVersion(), event.getExpire(), event.getData());
+    if (!events.isEmpty()) {
+      events.stream().forEach(
+          event -> {
+            Message message = Message.build(event.getId(), null,
+                event.getCreatedTime(), event.getVersion(), event.getExpire(), event.getData());
 
-          publishEvent(event.getTopic(), message);
-        }
-    );
+            publishEvent(event.getTopic(), message);
+          }
+      );
 
-    messageService.deleteEvents(events);
+      messageService.deleteEvents(events);
+    }
   }
 
   /**
