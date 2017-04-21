@@ -14,7 +14,7 @@ import io.reactivesw.category.application.model.action.SetParent;
 import io.reactivesw.category.application.model.action.SetSlug;
 
 /**
- * configurations for common update actions that will be used in more thant one service
+ * Configurations for common update actions that will be used in more thant one service
  * and this action also extends other action configure in each service.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "action")
@@ -31,7 +31,7 @@ import io.reactivesw.category.application.model.action.SetSlug;
 public interface UpdateAction {
 
   /**
-   * get action name.
+   * Get action name.
    *
    * @return String
    */

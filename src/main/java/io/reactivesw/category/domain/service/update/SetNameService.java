@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class SetNameService implements Updater<Category, UpdateAction> {
 
   /**
-   * set name.
+   * Set name.
    *
    * @param entity E
    * @param action UpdateAction

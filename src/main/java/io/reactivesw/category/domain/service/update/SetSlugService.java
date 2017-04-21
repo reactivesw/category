@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class SetSlugService implements Updater<Category, UpdateAction> {
 
   /**
-   * update handle.
+   * Update handle.
    *
    * @param entity E
    * @param action UpdateAction

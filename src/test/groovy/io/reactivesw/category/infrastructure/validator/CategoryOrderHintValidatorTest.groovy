@@ -4,6 +4,9 @@ import io.reactivesw.category.infrastructure.validator.CategoryOrderHintValidato
 import io.reactivesw.exception.ParametersException
 import spock.lang.Specification
 
+/**
+ * Test for CategoryOrderHintValidator class.
+ */
 class CategoryOrderHintValidatorTest extends Specification {
     CategoryOrderHintValidator categoryOrderHintValidator = new CategoryOrderHintValidator()
 

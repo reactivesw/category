@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 public class SetParentService implements Updater<Category, UpdateAction> {
 
   /**
-   * category service.
+   * Category service.
    */
   @Autowired
   private transient CategoryService categoryService;
 
   /**
-   * set parent.
+   * Set parent.
    *
    * @param entity E
    * @param action UpdateAction

@@ -20,7 +20,7 @@ public final class CategoryUtils {
   }
 
   /**
-   * get all names from list of CategoryEntity.
+   * Get all names from list of CategoryEntity.
    *
    * @param categories list of CategoryEntity
    * @return list of LocalizedStringEntity

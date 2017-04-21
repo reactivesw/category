@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
  */
 @Service(value = CategoryActionUtils.SET_DESCRIPTION)
 public class SetDescriptionService implements Updater<Category, UpdateAction> {
+
   /**
-   * set description.
+   * Set description.
+   *
    * @param entity E
    * @param action UpdateAction
    */

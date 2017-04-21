@@ -8,18 +8,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * SetMetaKeywords for updating category.
+ * SetMetaKeywords is used to update category.
  */
 @Getter
 @Setter
 public class SetMetaKeywords implements UpdateAction {
+
   /**
    * The Meta keywords.
    */
   private LocalizedString metaKeywords;
 
   /**
-   * get update service name.
+   * Get update service name.
    *
    * @return update service name
    */

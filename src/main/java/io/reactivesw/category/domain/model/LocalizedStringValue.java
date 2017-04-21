@@ -29,13 +29,13 @@ public class LocalizedStringValue {
   private String id;
 
   /**
-   * language.
+   * Language.
    */
   @Column
   private String language;
 
   /**
-   * text value.
+   * Text value.
    */
   @Column(columnDefinition = "text")
   private String text;

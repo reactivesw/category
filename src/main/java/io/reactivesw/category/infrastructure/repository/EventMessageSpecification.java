@@ -23,14 +23,14 @@ public final class EventMessageSpecification {
   }
 
   /**
-   * specification for fetch Events.
+   * Specification for fetch Events.
    *
    * @return Specification
    */
   public static Specification<EventMessage> isAvailable() {
     return new Specification<EventMessage>() {
       /**
-       * predicate builder.
+       * Predicate builder.
        */
       public Predicate toPredicate(Root<EventMessage> root, CriteriaQuery<?> query,
           CriteriaBuilder builder) {

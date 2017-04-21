@@ -22,7 +22,7 @@ import java.util.function.Predicate;
 public final class CategoryNameValidator {
 
   /**
-   * log.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryNameValidator.class);
 

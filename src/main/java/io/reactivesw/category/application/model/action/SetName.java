@@ -10,19 +10,21 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 
 /**
- * SetName for updating category.
+ * SetName is used to update category.
  */
 @Getter
 @Setter
 public class SetName implements UpdateAction {
+
   /**
-   * name.
+   * Name.
    */
   @NotNull
   private LocalizedString name;
 
   /**
-   * get update service name.
+   * Get update service name.
+   *
    * @return update service name
    */
   @Override

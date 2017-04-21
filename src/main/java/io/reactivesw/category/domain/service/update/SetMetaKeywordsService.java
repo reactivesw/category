@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class SetMetaKeywordsService implements Updater<Category, UpdateAction> {
 
   /**
-   * set meta key words.
+   * Set meta key words.
    *
    * @param entity E
    * @param action UpdateAction

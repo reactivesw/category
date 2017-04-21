@@ -21,8 +21,9 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "event")
 public class EventMessage {
+
   /**
-   * uuid.
+   * The uuid.
    */
   @Id
   @GeneratedValue(generator = "uuid")
@@ -37,12 +38,12 @@ public class EventMessage {
   private long createdTime;
 
   /**
-   * the event will be expired in expire.
+   * The event will be expired in expire.
    */
   private long expire;
 
   /**
-   * version.
+   * The version.
    */
   private Integer version;
 
@@ -52,12 +53,12 @@ public class EventMessage {
   private String data;
 
   /**
-   * topic.
+   * The topic.
    */
   private String topic;
 
   /**
-   * event status.
+   * The event status.
    */
   private EventStatus status;
 }

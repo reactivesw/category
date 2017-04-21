@@ -7,18 +7,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * SetExternaliId for updating category.
+ * SetExternaliId is used to update category.
  */
 @Getter
 @Setter
 public class SetExternalId implements UpdateAction {
+
   /**
    * The External id.
    */
   private String externalId;
 
   /**
-   * get update service name.
+   * Get update service name.
    *
    * @return update service name
    */
