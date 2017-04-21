@@ -23,21 +23,19 @@ import java.util.List;
  */
 @Service
 public class EventMessageService {
+
   /**
    * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventMessageService.class);
-
-  /**
-   * Event message repository.
-   */
-  private transient EventMessageRepository eventMessageRepository;
-
-
   /**
    * Json serializer.
    */
   private transient static JsonSerializer jsonSerializer = new JsonSerializer();
+  /**
+   * Event message repository.
+   */
+  private transient EventMessageRepository eventMessageRepository;
 
   /**
    * Instantiates a new Event message service.
@@ -61,7 +59,7 @@ public class EventMessageService {
 
     EventMessage savedMessage = eventMessageRepository.save(message);
 
-    LOG.debug("End. EventId: {}.", savedMessage.getId());
+    LOG.debug("Exit. EventId: {}.", savedMessage.getId());
   }
 
 
