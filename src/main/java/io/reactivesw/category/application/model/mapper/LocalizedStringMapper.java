@@ -6,6 +6,7 @@ import io.reactivesw.model.LocalizedString;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 /**
  * LocalizedString object converter.
@@ -97,10 +98,9 @@ public final class LocalizedStringMapper {
   private static LocalizedString toModel(Set<LocalizedStringValue>
       localizedStringEntities) {
     LocalizedString localizedString = new LocalizedString();
-    for (LocalizedStringValue localizedStringEntity : localizedStringEntities) {
-      localizedString.addKeyValue(localizedStringEntity.getLanguage(), localizedStringEntity
-          .getText());
-    }
+    Consumer<LocalizedStringValue> consumer = (x) -> localizedString
+        .addKeyValue(x.getLanguage(), x.getText());
+    localizedStringEntities.stream().forEach(consumer);
     return localizedString;
   }
 
@@ -125,11 +125,8 @@ public final class LocalizedStringMapper {
   private static Set<LocalizedStringValue> toEntity(LocalizedString localizedString,
       Set<LocalizedStringValue>
           localizedStringEntities) {
-    Set<Map.Entry<String, String>> localizedStrings = localizedString.getLocalized().entrySet();
-    for (Map.Entry localizedValue : localizedStrings) {
-      localizedStringEntities.add(build(localizedValue));
-    }
-
+    Consumer<Map.Entry<String, String>> consumer = (x) -> localizedStringEntities.add(build(x));
+    localizedString.getLocalized().entrySet().stream().forEach(consumer);
     return localizedStringEntities;
   }
 }
