@@ -68,7 +68,7 @@ public class CategoryService {
    * @return the category
    */
   public CategoryView createCategory(CategoryDraft categoryDraft) {
-    LOG.debug("Enter. Create category, Category Draft is {}.", categoryDraft);
+    LOG.debug("Enter. Category Draft: {}.", categoryDraft);
 
     String parentId = getParentId(categoryDraft);
     List<Category> sameRootCategories = categoryRepository.queryCategoryByParent(parentId);
@@ -82,8 +82,8 @@ public class CategoryService {
 
     CategoryView categoryView = CategoryMapper.toModel(savedEntity);
 
-    LOG.debug("Exit. Created category, new categoryEntity id is: {}.", categoryView.getId());
-    LOG.trace("Exit. Created category, new categoryEntity is: {}.", categoryView);
+    LOG.debug("Exit. New CategoryId: {}.", categoryView.getId());
+    LOG.trace("New category: {}.", categoryView);
 
     return categoryView;
   }
@@ -112,8 +112,8 @@ public class CategoryService {
 
     categoryRepository.delete(totalCategories);
 
-    LOG.debug("Exit. The count of deleted category is: {}.", result.size());
-    LOG.trace("Exit. Deleted category is: {}.", result);
+    LOG.debug("Exit. Deleted category count: {}.", result.size());
+    LOG.trace("Deleted category: {}.", result);
     return result;
   }
 
@@ -126,7 +126,7 @@ public class CategoryService {
    * @return the category
    */
   public CategoryView updateCategory(String id, Integer version, List<UpdateAction> actions) {
-    LOG.debug("Enter. Update category, category id is {}, version is {}, update action is {}.", id,
+    LOG.debug("Enter. CategoryId: {}, version: {}, actions: {}.", id,
         version, actions);
 
     Category entity = getById(id);
@@ -136,8 +136,8 @@ public class CategoryService {
     //TODO send message, if slug be updated
     CategoryView result = CategoryMapper.toModel(updatedEntity);
 
-    LOG.debug("Exit. Updated category, updated category id is {}.", result.getId());
-    LOG.trace("Exit. Updated category, updated category is {}.", result);
+    LOG.debug("Exit. CategoryId: {}.", id);
+    LOG.trace("Updated category: {}.", result);
     return result;
   }
 
@@ -149,14 +149,14 @@ public class CategoryService {
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   public CategoryView getCategoryById(String id) {
-    LOG.debug("Enter. Get category by id, category id is {}.", id);
+    LOG.debug("Enter. CategoryId: {}.", id);
 
     Category entity = getById(id);
 
     CategoryView result = CategoryMapper.toModel(entity);
 
-    LOG.debug("Exit. Got category by id, got category id is: {}.", result.getId());
-    LOG.trace("Exit. Got category by id, got category is: {}.", result);
+    LOG.debug("Exit. CategoryId: {}.", result.getId());
+    LOG.trace("Category: {}.", result);
 
     return result;
   }
@@ -169,13 +169,13 @@ public class CategoryService {
    * @return the paged query result
    */
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions queryConditions) {
-    LOG.debug("Enter. Query categories, query conditions is: {}.", queryConditions);
+    LOG.debug("Enter. Query conditions: {}.", queryConditions);
     List<Category> entities = categoryRepository.findAll();
 
     List<CategoryView> result = CategoryMapper.toModel(entities);
 
-    LOG.debug("Exit. Queried categories, the count of queried categories is: {}.", result.size());
-    LOG.trace("Exit. Queried categories, queried categories are: {}.", result);
+    LOG.debug("Exit. Queried categories count: {}.", result.size());
+    LOG.trace("Categories: {}.", result);
     PagedQueryResult<CategoryView> pagedQueryResult = new PagedQueryResult<>();
     pagedQueryResult.setResults(result);
     pagedQueryResult.setCount(result.size());
@@ -262,7 +262,7 @@ public class CategoryService {
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   private Category getById(String id) {
-    LOG.debug("Enter. Get by id, id is {}.", id);
+    LOG.debug("Enter. Id: {}.", id);
 
     Category categoryEntity = categoryRepository.findOne(id);
 
@@ -271,8 +271,8 @@ public class CategoryService {
       throw new NotExistException("Can not find category by id:" + id);
     }
 
-    LOG.debug("Exit. Got by id, id is {}.", id);
-    LOG.trace("Exit. Got by id, id is {}, got CategoryEntity is: {}", id, categoryEntity);
+    LOG.debug("Exit. Id: {}.", id);
+    LOG.trace("Id: {}, categories: {}", id, categoryEntity);
     return categoryEntity;
   }
 

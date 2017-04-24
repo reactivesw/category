@@ -74,8 +74,8 @@ public class CategoryController {
 
     CategoryView category = categoryService.createCategory(categoryDraft);
 
-    LOG.info("Exit. Created category, save category id is {}.", category.getId());
-    LOG.trace("Exit. Created category, saved category is {}.", category);
+    LOG.info("Exit. CategoryId {}.", category.getId());
+    LOG.trace("Category: {}.", category);
 
     return category;
   }
@@ -88,11 +88,11 @@ public class CategoryController {
   @DeleteMapping(value = Router.CATEGORY_WITH_ID)
   public void deleteCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
       @RequestParam Integer version) {
-    LOG.info("Enter. Delete category, category id is {}, version is {}.", id, version);
+    LOG.info("Enter. CategoryId: {}, version: {}.", id, version);
 
     categoryApplication.deleteCategory(id, version);
 
-    LOG.info("Exit. Deleted category, category id is {}, version is {}.", id, version);
+    LOG.info("Exit. CategoryId: {}, version: {}.", id, version);
   }
 
   /**
@@ -105,13 +105,13 @@ public class CategoryController {
   @PutMapping(Router.CATEGORY_WITH_ID)
   public CategoryView updateCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
       @RequestBody @Valid UpdateRequest updateRequest) {
-    LOG.info("Enter. Update category, category id is {}, update request is {}.", id, updateRequest);
+    LOG.info("Enter. CategoryId: {}, update request: {}.", id, updateRequest);
 
     CategoryView result = categoryService.updateCategory(id, updateRequest.getVersion(),
         updateRequest.getActions());
 
-    LOG.info("Exit. Updated category, updated category id is {}.", result.getId());
-    LOG.trace("Exit. Updated category, updated category is {}.", result);
+    LOG.info("Exit. CategoryId: {}.", result.getId());
+    LOG.trace("Updated category: {}.", result);
 
     return result;
   }
@@ -124,10 +124,10 @@ public class CategoryController {
    */
   @GetMapping(Router.CATEGORY_WITH_ID)
   public CategoryView getCategoryById(@PathVariable(value = Router.CATEGORY_ID) String id) {
-    LOG.info("Enter. Get category by id, id is {}.", id);
+    LOG.info("Enter. CategoryId: {}.", id);
     CategoryView category = categoryService.getCategoryById(id);
-    LOG.info("Exit. Got category by Id, got category id is {}.", category.getId());
-    LOG.trace("Exit. Got category by Id, got category is {}.", category);
+    LOG.info("Exit. CategoryId: {}.", category.getId());
+    LOG.trace("Category: {}.", category);
     return category;
   }
 
@@ -138,11 +138,11 @@ public class CategoryController {
    */
   @GetMapping(Router.CATEGORY_ROOT)
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions query) {
-    LOG.info("Enter. Query categories, query parameters: {}.", query);
+    LOG.info("Enter. Query parameters: {}.", query);
     PagedQueryResult<CategoryView> result = categoryService.queryCategories(query);
 
-    LOG.info("Exit. Queried categories, the count of query result {}.", result.getCount());
-    LOG.trace("Exit. Queried categories, query result is: {}.", result);
+    LOG.info("Exit. Result count: {}.", result.getCount());
+    LOG.trace("Query result: {}.", result);
 
     return result;
   }
