@@ -6,7 +6,8 @@ import io.reactivesw.category.infrastructure.enums.EventStatus;
 import io.reactivesw.category.infrastructure.repository.EventMessageRepository;
 import io.reactivesw.category.infrastructure.repository.EventMessageSpecification;
 import io.reactivesw.message.client.utils.serializer.JsonSerializer;
-
+import java.util.Arrays;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Event Message Service.
@@ -28,14 +26,16 @@ public class EventMessageService {
    * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventMessageService.class);
+
+  /**
+   * Event message repository.
+   */
+
+  private transient EventMessageRepository eventMessageRepository;
   /**
    * Json serializer.
    */
   private transient static JsonSerializer jsonSerializer = new JsonSerializer();
-  /**
-   * Event message repository.
-   */
-  private transient EventMessageRepository eventMessageRepository;
 
   /**
    * Instantiates a new Event message service.

@@ -9,7 +9,7 @@ import io.reactivesw.category.domain.service.CategoryService;
 import io.reactivesw.category.infrastructure.Router;
 import io.reactivesw.category.infrastructure.update.UpdateRequest;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
-
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 
 /**
@@ -74,7 +72,7 @@ public class CategoryController {
 
     CategoryView category = categoryService.createCategory(categoryDraft);
 
-    LOG.info("Exit. CategoryId {}.", category.getId());
+    LOG.info("Exit. CategoryId: {}.", category.getId());
     LOG.trace("Category: {}.", category);
 
     return category;
