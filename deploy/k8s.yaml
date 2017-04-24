@@ -15,7 +15,7 @@ items:
       spec:
         containers:
         - name: category
-          image: reactivesw/category:0.0.4-dev
+          image: reactivesw/category:0.0.4
           imagePullPolicy: Always
           ports:
           - containerPort: 80
@@ -26,6 +26,10 @@ items:
             value: jdbc:postgresql://reactivesw-data/category
           - name: spring_cloud_config_uri
             value: http://reactivesw-config
+          - name: io_reactivesw_message_topic_deletecategory_name
+            value: reactivesw-dev-category-deleted
+          - name: io_reactivesw_message_topic_deletecategory_version
+            value: "1"
           - name: spring_datasource_username
             valueFrom:
               secretKeyRef:
