@@ -6,15 +6,17 @@ import io.reactivesw.category.domain.model.Category;
 import io.reactivesw.category.infrastructure.update.UpdateAction;
 import io.reactivesw.category.infrastructure.util.CategoryActionUtils;
 import io.reactivesw.model.Updater;
+
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set metaDescription when update category.
  */
 @Service(value = CategoryActionUtils.SET_META_DESCRIPTION)
 public class SetMetaDescriptionService implements Updater<Category, UpdateAction> {
+
   /**
-   * set meta description.
+   * Set meta description.
    *
    * @param entity E
    * @param action UpdateAction

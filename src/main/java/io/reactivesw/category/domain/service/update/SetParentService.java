@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set category when update category.
  */
 @Service(value = CategoryActionUtils.SET_PARENT)
 public class SetParentService implements Updater<Category, UpdateAction> {
 
   /**
-   * category service.
+   * Category service.
    */
   @Autowired
   private transient CategoryService categoryService;
 
   /**
-   * set parent.
+   * Set parent.
    *
    * @param entity E
    * @param action UpdateAction

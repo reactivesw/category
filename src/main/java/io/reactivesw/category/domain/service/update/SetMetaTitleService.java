@@ -9,13 +9,13 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set metaTitle when update category.
  */
 @Service(value = CategoryActionUtils.SET_META_TITLE)
 public class SetMetaTitleService implements Updater<Category, UpdateAction> {
 
   /**
-   * set meta title.
+   * Set meta title.
    *
    * @param entity E
    * @param action UpdateAction

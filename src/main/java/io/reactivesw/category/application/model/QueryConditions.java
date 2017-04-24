@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by Davis on 16/11/21.
+ * QueryConditions for querying category.
  */
 @Getter
 @Setter

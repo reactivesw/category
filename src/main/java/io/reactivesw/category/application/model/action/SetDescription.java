@@ -8,11 +8,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by Davis on 16/12/29.
+ * SetDescription is used to update category.
  */
 @Getter
 @Setter
 public class SetDescription implements UpdateAction {
+
   /**
    * If the description parameter is not included, the field will be emptied.
    */

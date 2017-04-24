@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
  * The type Event message specification.
  */
 public final class EventMessageSpecification {
+
   /**
    * Instantiates a new Event message specification.
    */
@@ -22,17 +23,17 @@ public final class EventMessageSpecification {
   }
 
   /**
-   * specification for fetch Events.
+   * Specification for fetch Events.
    *
    * @return Specification
    */
   public static Specification<EventMessage> isAvailable() {
     return new Specification<EventMessage>() {
       /**
-       * predicate builder.
+       * Predicate builder.
        */
       public Predicate toPredicate(Root<EventMessage> root, CriteriaQuery<?> query,
-                                   CriteriaBuilder builder) {
+          CriteriaBuilder builder) {
         // Fetch events for two kind of conditions.
         return builder.or(
             builder.and(

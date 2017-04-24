@@ -9,13 +9,13 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set name when update category.
  */
 @Service(value = CategoryActionUtils.SET_NAME)
 public class SetNameService implements Updater<Category, UpdateAction> {
 
   /**
-   * set name.
+   * Set name.
    *
    * @param entity E
    * @param action UpdateAction

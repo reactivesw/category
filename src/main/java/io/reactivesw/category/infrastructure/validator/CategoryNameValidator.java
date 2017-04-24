@@ -7,18 +7,22 @@ import io.reactivesw.category.infrastructure.util.CategoryUtils;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.ParametersException;
 import io.reactivesw.model.LocalizedString;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
- * Created by Davis on 16/12/6.
+ * Validator for category name.
  */
 public final class CategoryNameValidator {
+
   /**
-   * log.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(CategoryNameValidator.class);
 
@@ -38,15 +42,23 @@ public final class CategoryNameValidator {
     if (draft.getName() == null
         || draft.getName().getLocalized() == null
         || draft.getName().getLocalized().isEmpty()) {
-      LOG.debug("CategoryView name can not be null");
-      throw new ParametersException("CategoryView name can not be null");
+      LOG.debug("CategoryView name can not be null.");
+      throw new ParametersException("CategoryView name can not be null.");
     }
+    Predicate<Map.Entry<String, String>> entryPredicate =
+        (entry) -> StringUtils.isEmpty(entry.getValue()) || StringUtils.isEmpty(entry.getKey());
+    if (draft.getName().getLocalized().entrySet().stream()
+        .anyMatch(entryPredicate)) {
+      LOG.debug("CategoryView name can not be empty.");
+      throw new ParametersException("CategoryView name can not be empty.");
+    }
+
   }
 
   /**
    * Equal validate.
    *
-   * @param name               the name
+   * @param name the name
    * @param sameRootCategories the same root categories
    */
   public static void validateEqual(LocalizedString name, List<Category> sameRootCategories) {
@@ -58,8 +70,8 @@ public final class CategoryNameValidator {
       String value = entry.getValue().toString();
       for (LocalizedStringValue categoryName : categoryNames) {
         if (key.equals(categoryName.getLanguage()) && value.equals(categoryName.getText())) {
-          LOG.debug("can not create category with same name : {}, key: {}", value, key);
-          throw new AlreadyExistException("Can not create category with same name");
+          LOG.debug("Can not create category with same name: {}, key: {}.", value, key);
+          throw new AlreadyExistException("Can not create category with same name.");
         }
       }
     }

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Created by Davis on 16/11/16.
+ * The value of localizedString.
  */
 @Entity
 @Table(name = "common_localized_String")
@@ -29,13 +29,13 @@ public class LocalizedStringValue {
   private String id;
 
   /**
-   * language.
+   * Language.
    */
   @Column
   private String language;
 
   /**
-   * text value.
+   * Text value.
    */
   @Column(columnDefinition = "text")
   private String text;

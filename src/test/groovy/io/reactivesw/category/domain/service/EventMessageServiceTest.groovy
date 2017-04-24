@@ -2,6 +2,7 @@ package io.reactivesw.category.domain.service
 
 import com.google.common.collect.Lists
 import io.reactivesw.category.domain.model.EventMessage
+import io.reactivesw.category.infrastructure.configuration.EventConfig
 import io.reactivesw.category.infrastructure.enums.EventStatus
 import io.reactivesw.category.infrastructure.repository.EventMessageRepository
 import org.springframework.data.domain.Page
@@ -13,7 +14,8 @@ import spock.lang.Specification
  */
 class EventMessageServiceTest extends Specification {
     EventMessageRepository repository = Mock()
-    EventMessageService service = new EventMessageService(repository)
+    EventConfig eventConfig = new EventConfig(deleteCategoryName: "deleteCategory", deleteCategoryVersion: 1)
+    EventMessageService service = new EventMessageService(repository, eventConfig)
 
     def categoryId1 = "categoryId1"
     def categoryId2 = "categoryId2"

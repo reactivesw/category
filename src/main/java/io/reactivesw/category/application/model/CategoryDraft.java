@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * Created by Davis on 16/11/17.
+ * Category draft is used to transfer data.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -20,13 +20,13 @@ import javax.validation.constraints.Pattern;
 public class CategoryDraft {
 
   /**
-   * the name.
+   * The name.
    */
   @NotNull
   private LocalizedString name;
 
   /**
-   * the description.
+   * The description.
    */
   private LocalizedString description;
 
@@ -37,7 +37,7 @@ public class CategoryDraft {
   private Reference parent;
 
   /**
-   * human-readable identifier usually used as deep-link URL to the related category.
+   * Human-readable identifier usually used as deep-link URL to the related category.
    * Allowed are alphabetic, numeric, underscore (_) and hyphen (-) characters.
    * Maximum size is 256.
    * Must be unique across a merchant!

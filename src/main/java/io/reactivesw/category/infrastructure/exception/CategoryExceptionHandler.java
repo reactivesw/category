@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by umasuo on 17/3/2.
+ * Handle exception thrown by category.
  */
 @Component
 public class CategoryExceptionHandler extends ExceptionHandler implements HandlerExceptionResolver {
 
   /**
-   * exception handle method.
+   * Exception handle method.
+   *
    * @param request HttpServletRequest
    * @param response HttpServletResponse
    * @param handler Object
@@ -25,7 +26,7 @@ public class CategoryExceptionHandler extends ExceptionHandler implements Handle
    */
   @Override
   public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
-                                       Object handler, Exception ex) {
+      Object handler, Exception ex) {
     setResponse(request, response, handler, ex);
     return new ModelAndView();
   }

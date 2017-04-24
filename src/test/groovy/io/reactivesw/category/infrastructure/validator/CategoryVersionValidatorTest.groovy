@@ -5,32 +5,32 @@ import io.reactivesw.exception.ConflictException
 import spock.lang.Specification
 
 /**
- * Created by Davis on 17/3/28.
+ * Test for CategoryVersionValidator.
  */
 class CategoryVersionValidatorTest extends Specification {
     CategoryVersionValidator validator = new CategoryVersionValidator()
 
-    def "test 1 : entity's version and input version is not match and throw ConflictException"() {
-        given:
+    def "Test1: entity's version and input version is not match should throw a ConflictException"() {
+        given: "prepare data"
         Category entity = new Category(version: 1)
         Integer version = 2
 
-        when:
+        when: "call function"
         CategoryVersionValidator.validate(entity, version)
 
-        then:
+        then: "should throw a conflictException"
         thrown(ConflictException)
     }
 
-    def "test 2 : entity's version and input version is match and expect true"() {
-        given:
+    def "Test2: entity's version and input version is match should be true"() {
+        given: "prepare data"
         Integer version = 1
         Category entity = new Category(version: version)
 
-        when:
+        when: "call function"
         CategoryVersionValidator.validate(entity, version)
 
-        then:
+        then: "should be true"
         true
     }
 }

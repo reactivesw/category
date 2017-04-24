@@ -2,11 +2,11 @@ package io.reactivesw.category.domain.service;
 
 import io.reactivesw.category.application.model.mapper.EventMessageMapper;
 import io.reactivesw.category.domain.model.EventMessage;
+import io.reactivesw.category.infrastructure.configuration.EventConfig;
 import io.reactivesw.category.infrastructure.enums.EventStatus;
 import io.reactivesw.category.infrastructure.repository.EventMessageRepository;
 import io.reactivesw.category.infrastructure.repository.EventMessageSpecification;
 import io.reactivesw.message.client.utils.serializer.JsonSerializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 public class EventMessageService {
   /**
-   * log.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventMessageService.class);
 
@@ -33,9 +33,14 @@ public class EventMessageService {
    */
   private transient EventMessageRepository eventMessageRepository;
 
+  /**
+   * Event message repository.
+   */
+  private transient EventConfig eventConfig;
+
 
   /**
-   * json serializer.
+   * Json serializer.
    */
   private transient static JsonSerializer jsonSerializer = new JsonSerializer();
 
@@ -45,8 +50,10 @@ public class EventMessageService {
    * @param eventMessageRepository the event message repository
    */
   @Autowired
-  public EventMessageService(EventMessageRepository eventMessageRepository) {
+  public EventMessageService(EventMessageRepository eventMessageRepository,
+                             EventConfig eventConfig) {
     this.eventMessageRepository = eventMessageRepository;
+    this.eventConfig = eventConfig;
   }
 
   /**
@@ -56,7 +63,7 @@ public class EventMessageService {
    */
   public void saveDeletedEvent(List<String> categoryIds) {
     LOG.debug("Enter. CategoryId: {}", categoryIds);
-    EventMessage message = EventMessageMapper.build();
+    EventMessage message = EventMessageMapper.build(eventConfig);
     message.setData(jsonSerializer.serialize(categoryIds));
 
     EventMessage savedMessage = eventMessageRepository.save(message);

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * Created by Davis on 16/12/6.
+ * SetSlug is used to update category.
  */
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class SetSlug implements UpdateAction {
   private String slug;
 
   /**
-   * get update service name.
+   * Get update service name.
    *
    * @return update service name
    */

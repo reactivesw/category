@@ -10,12 +10,14 @@ import io.reactivesw.model.Updater;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by Davis on 16/12/29.
+ * Service to set description when update category.
  */
 @Service(value = CategoryActionUtils.SET_DESCRIPTION)
 public class SetDescriptionService implements Updater<Category, UpdateAction> {
+
   /**
-   * set description.
+   * Set description.
+   *
    * @param entity E
    * @param action UpdateAction
    */

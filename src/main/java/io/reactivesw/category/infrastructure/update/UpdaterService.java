@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
  * we may got two kind of update: just use the data in action, or still use data from other service.
  * if we just use the data in action, we can only use action mapper to set the data.
  * if we need get data from other palace, we should use update service.
- * Created by umasuo on 16/12/7.
  */
 @Service
 public class UpdaterService implements Updater<Category, UpdateAction> {
@@ -23,7 +22,7 @@ public class UpdaterService implements Updater<Category, UpdateAction> {
   private transient ApplicationContext context;
 
   /**
-   * put the value in action to entity.
+   * Put the value in action to entity.
    *
    * @param entity E
    * @param action UpdateAction
@@ -35,7 +34,7 @@ public class UpdaterService implements Updater<Category, UpdateAction> {
   }
 
   /**
-   * get mapper.
+   * Get mapper.
    *
    * @param action UpdateAction
    * @return ZoneUpdateMapper

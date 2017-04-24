@@ -3,32 +3,33 @@ package io.reactivesw.category.application.service;
 import io.reactivesw.category.domain.model.EventMessage;
 import io.reactivesw.category.domain.service.EventMessageService;
 import io.reactivesw.category.infrastructure.configuration.EventConfig;
-import io.reactivesw.category.infrastructure.util.EventTopics;
 import io.reactivesw.message.client.core.DefaultProducerFactory;
 import io.reactivesw.message.client.core.Message;
 import io.reactivesw.message.client.producer.Producer;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * EventMessage Publisher.
  */
 @Service
 public class EventPublisher {
+
   /**
-   * log.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EventPublisher.class);
 
 
   /**
-   * producer map.
+   * Producer map.
    */
   private transient final Map<String, Producer> producerMap = new ConcurrentHashMap<>();
 
@@ -41,15 +42,16 @@ public class EventPublisher {
   /**
    * Instantiates a new Event publisher.
    */
+  @Autowired
   public EventPublisher(EventConfig config) {
     Producer deletedProducer = DefaultProducerFactory.createGoogleProducer(
-        config.getGoogleCloudProjectId(), EventTopics.DELETED_CATEGORY);
+        config.getGoogleCloudProjectId(), config.getDeleteCategoryName());
 
-    producerMap.put(EventTopics.DELETED_CATEGORY, deletedProducer);
+    producerMap.put(config.getDeleteCategoryName(), deletedProducer);
   }
 
   /**
-   * executor.
+   * Executor.
    * Executes each 200 ms.
    */
   @Scheduled(fixedRate = 200)
@@ -57,20 +59,22 @@ public class EventPublisher {
 
     List<EventMessage> events = messageService.getEvents();
 
-    events.stream().forEach(
-        event -> {
-          Message message = Message.build(event.getId(), null,
-              event.getCreatedTime(), event.getVersion(), event.getExpire(), event.getData());
+    if (!events.isEmpty()) {
+      events.stream().forEach(
+          event -> {
+            Message message = Message.build(event.getId(), null,
+                event.getCreatedTime(), event.getVersion(), event.getExpire(), event.getData());
 
-          publishEvent(event.getTopic(), message);
-        }
-    );
+            publishEvent(event.getTopic(), message);
+          }
+      );
 
-    messageService.deleteEvents(events);
+      messageService.deleteEvents(events);
+    }
   }
 
   /**
-   * publish an event to a topic.
+   * Publish an event to a topic.
    *
    * @param topicName topic name
    * @param message   event

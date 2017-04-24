@@ -7,20 +7,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by Davis on 16/12/6.
+ * SetOrderHint is used to update service.
  */
 @Getter
 @Setter
 public class SetOrderHint implements UpdateAction {
-  /**
-   * The Order hint.
-   */
-  private String orderHint;
 
   /**
-   * get update service name.
-   *
-   * @return update service name
+   * The previous order hint.
+   */
+  private String previousOrderHint;
+
+  /**
+   * The next order hint.
+   */
+  private String nextOrderHint;
+
+  /**
+   * Get update service name.
    */
   @Override
   public String getActionName() {

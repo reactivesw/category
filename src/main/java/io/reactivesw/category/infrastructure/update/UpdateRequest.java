@@ -8,7 +8,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Davis on 16/11/21.
+ * Object for update category.
  */
 public class UpdateRequest {
   /**

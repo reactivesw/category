@@ -8,18 +8,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by Davis on 16/12/6.
+ * SetMetaTitle is used to update category.
  */
 @Getter
 @Setter
 public class SetMetaTitle implements UpdateAction {
+
   /**
    * The Meta title.
    */
   private LocalizedString metaTitle;
 
   /**
-   * get update service name.
+   * Get update service name.
+   *
    * @return update service name
    */
   @Override

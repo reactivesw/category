@@ -9,30 +9,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by umasuo on 17/2/21.
+ * Controller to check health status of service.
  */
 @RestController
 public class HealthController {
 
   /**
-   * log.
+   * Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(HealthController.class);
 
   /**
-   * service name.
+   * Service name.
    */
   @Value("${spring.application.name}")
   private transient String serviceName;
 
   /**
-   * this api is used for health check.
+   * This api is used to check health.
    *
    * @return service name.
    */
   @GetMapping(Router.CATEGORY_HELTH_CHECK)
   public String healthCheck() {
-    LOG.debug("enter healthCheck");
+    LOG.debug("Enter healthCheck.");
 
     return serviceName + ", system time: " + System.currentTimeMillis();
   }

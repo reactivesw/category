@@ -15,14 +15,14 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
- * category model.
- * Created by Davis on 16/11/14.
+ * Category model.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryView {
+
   /**
    * The unique ID of the category.
    */
@@ -34,7 +34,7 @@ public class CategoryView {
   private Integer version;
 
   /**
-   * create time.
+   * Create time.
    */
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
   private ZonedDateTime createdAt;

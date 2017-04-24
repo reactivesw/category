@@ -5,22 +5,22 @@ package io.reactivesw.category.infrastructure.enums;
  */
 public enum EventStatus {
   /**
-   * new created events.
+   * New created events.
    */
   CREATED(0),
 
   /**
-   * events being publishing.
+   * Events being publishing.
    */
   PENDING(1);
 
   /**
-   * int value;
+   * Int value.
    */
   private int value;
 
   /**
-   * constructor.
+   * Constructor.
    *
    * @param value int value
    */
@@ -29,7 +29,7 @@ public enum EventStatus {
   }
 
   /**
-   * get value.
+   * Get value.
    *
    * @return int
    */
