@@ -65,11 +65,13 @@ public final class CategoryNameValidator {
     List<LocalizedStringValue> categoryNames =
         CategoryUtils.getAllCategoryNames(sameRootCategories);
 
-    name.getLocalized().entrySet().stream().forEach(x -> {
+    name.getLocalized().entrySet().stream().forEach(localizedName -> {
       if (categoryNames.stream().anyMatch((categoryName) ->
-          x.getKey().toString().equals(categoryName.getLanguage()) &&
-              x.getValue().toString().equals(categoryName.getText()))) {
-        LOG.debug("Can not create category with same name: {}, key: {}.", x.getValue(), x.getKey());
+          localizedName.getKey().toString().equals(categoryName.getLanguage()) && localizedName
+              .getValue().toString().equals(categoryName.getText()))) {
+        LOG.debug("Can not create category with same name: {}, key: {}.",
+            localizedName.getValue(),
+            localizedName.getKey());
         throw new AlreadyExistException("Can not create category with same name.");
       }
     });

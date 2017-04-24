@@ -98,8 +98,8 @@ public final class LocalizedStringMapper {
   private static LocalizedString toModel(Set<LocalizedStringValue>
       localizedStringEntities) {
     LocalizedString localizedString = new LocalizedString();
-    Consumer<LocalizedStringValue> consumer = (x) -> localizedString
-        .addKeyValue(x.getLanguage(), x.getText());
+    Consumer<LocalizedStringValue> consumer = (localizedStringValue) -> localizedString
+        .addKeyValue(localizedStringValue.getLanguage(), localizedStringValue.getText());
     localizedStringEntities.stream().forEach(consumer);
     return localizedString;
   }
@@ -125,7 +125,8 @@ public final class LocalizedStringMapper {
   private static Set<LocalizedStringValue> toEntity(LocalizedString localizedString,
       Set<LocalizedStringValue>
           localizedStringEntities) {
-    Consumer<Map.Entry<String, String>> consumer = (x) -> localizedStringEntities.add(build(x));
+    Consumer<Map.Entry<String, String>> consumer = (localizedStringValue) -> localizedStringEntities
+        .add(build(localizedStringValue));
     localizedString.getLocalized().entrySet().stream().forEach(consumer);
     return localizedStringEntities;
   }
