@@ -12,15 +12,13 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -33,6 +31,7 @@ import javax.persistence.Version;
 @Table(name = "category")
 @EntityListeners(AuditingEntityListener.class)
 public class Category {
+
 
   /**
    * The id.
@@ -67,8 +66,10 @@ public class Category {
   /**
    * The name.
    */
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ElementCollection
+  @CollectionTable(name = "category_name")
   private Set<LocalizedStringValue> name;
+
 
   /**
    * The slug.
@@ -79,7 +80,8 @@ public class Category {
   /**
    * The description.
    */
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @ElementCollection
+  @CollectionTable(name = "category_description")
   private Set<LocalizedStringValue> description;
 
   /**
@@ -109,19 +111,22 @@ public class Category {
   /**
    * The meta title.
    */
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @ElementCollection
+  @CollectionTable(name = "category_meta_title")
   private Set<LocalizedStringValue> metaTitle;
 
   /**
    * The meta description.
    */
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @ElementCollection
+  @CollectionTable(name = "category_meta_description")
   private Set<LocalizedStringValue> metaDescription;
 
   /**
    * The meta key works.
    */
-  @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+  @ElementCollection
+  @CollectionTable(name = "category_meta_keywords")
   private Set<LocalizedStringValue> metaKeyWords;
 
 }
