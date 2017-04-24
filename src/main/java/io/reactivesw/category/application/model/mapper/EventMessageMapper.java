@@ -1,8 +1,8 @@
 package io.reactivesw.category.application.model.mapper;
 
 import io.reactivesw.category.domain.model.EventMessage;
+import io.reactivesw.category.infrastructure.configuration.EventConfig;
 import io.reactivesw.category.infrastructure.enums.EventStatus;
-import io.reactivesw.category.infrastructure.util.EventTopics;
 
 /**
  * Event Message Mapper.
@@ -19,14 +19,13 @@ public final class EventMessageMapper {
    *
    * @return the event message
    */
-  public static EventMessage build() {
+  public static EventMessage build(EventConfig config) {
     EventMessage message = new EventMessage();
 
-    // TODO: 17/4/17 change version code to config
-    message.setVersion(1);
+    message.setVersion(config.getDeleteCategoryVersion());
     message.setCreatedTime(System.currentTimeMillis());
     message.setStatus(EventStatus.CREATED);
-    message.setTopic(EventTopics.DELETED_CATEGORY);
+    message.setTopic(config.getDeleteCategoryName());
 
     return message;
   }

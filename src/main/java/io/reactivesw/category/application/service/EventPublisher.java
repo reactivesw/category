@@ -3,11 +3,9 @@ package io.reactivesw.category.application.service;
 import io.reactivesw.category.domain.model.EventMessage;
 import io.reactivesw.category.domain.service.EventMessageService;
 import io.reactivesw.category.infrastructure.configuration.EventConfig;
-import io.reactivesw.category.infrastructure.util.EventTopics;
 import io.reactivesw.message.client.core.DefaultProducerFactory;
 import io.reactivesw.message.client.core.Message;
 import io.reactivesw.message.client.producer.Producer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +42,12 @@ public class EventPublisher {
   /**
    * Instantiates a new Event publisher.
    */
+  @Autowired
   public EventPublisher(EventConfig config) {
     Producer deletedProducer = DefaultProducerFactory.createGoogleProducer(
-        config.getGoogleCloudProjectId(), EventTopics.DELETED_CATEGORY);
+        config.getGoogleCloudProjectId(), config.getDeleteCategoryName());
 
-    producerMap.put(EventTopics.DELETED_CATEGORY, deletedProducer);
+    producerMap.put(config.getDeleteCategoryName(), deletedProducer);
   }
 
   /**
@@ -78,7 +77,7 @@ public class EventPublisher {
    * Publish an event to a topic.
    *
    * @param topicName topic name
-   * @param message event
+   * @param message   event
    */
   private void publishEvent(String topicName, Message message) {
 

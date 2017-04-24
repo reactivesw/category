@@ -16,4 +16,17 @@ public class EventConfig {
    */
   @Value("${io.reactivesw.message.google.project.id}")
   private String googleCloudProjectId;
+
+  /**
+   * Delete category topic name.
+   */
+  @Value("${io.reactivesw.message.topic.deletecategory.name}")
+  private String deleteCategoryName;
+
+  /**
+   * Delete category topic version.
+   */
+  @Value("${io.reactivesw.message.topic.deletecategory.version}")
+  private Integer deleteCategoryVersion;
+
 }
