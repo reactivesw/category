@@ -32,7 +32,6 @@ import javax.persistence.Version;
 @EntityListeners(AuditingEntityListener.class)
 public class Category {
 
-
   /**
    * The id.
    */
