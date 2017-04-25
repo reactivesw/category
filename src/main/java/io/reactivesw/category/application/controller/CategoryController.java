@@ -9,7 +9,7 @@ import io.reactivesw.category.domain.service.CategoryService;
 import io.reactivesw.category.infrastructure.Router;
 import io.reactivesw.category.infrastructure.update.UpdateRequest;
 import io.reactivesw.category.infrastructure.validator.CategoryNameValidator;
-
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 
 /**
@@ -68,13 +66,14 @@ public class CategoryController {
   @PostMapping(Router.CATEGORY_ROOT)
   public CategoryView createCategory(@RequestBody @Valid CategoryDraft categoryDraft) {
 
-    LOG.debug("Create category: {}.", categoryDraft.toString());
+    LOG.info("Enter. Create category: {}.", categoryDraft);
 
     CategoryNameValidator.validateNull(categoryDraft);
 
     CategoryView category = categoryService.createCategory(categoryDraft);
 
-    LOG.debug("End createCategory, saved category is {}.", category.toString());
+    LOG.info("Exit. CategoryId: {}.", category.getId());
+    LOG.trace("Category: {}.", category);
 
     return category;
   }
@@ -87,11 +86,11 @@ public class CategoryController {
   @DeleteMapping(value = Router.CATEGORY_WITH_ID)
   public void deleteCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
       @RequestParam Integer version) {
-    LOG.debug("Enter deleteCategory, id is {}, version is {}.", id, version);
+    LOG.info("Enter. CategoryId: {}, version: {}.", id, version);
 
     categoryApplication.deleteCategory(id, version);
 
-    LOG.debug("End deleteCategory, id is {}, version is {}.", id, version);
+    LOG.info("Exit. CategoryId: {}, version: {}.", id, version);
   }
 
   /**
@@ -104,12 +103,13 @@ public class CategoryController {
   @PutMapping(Router.CATEGORY_WITH_ID)
   public CategoryView updateCategory(@PathVariable(value = Router.CATEGORY_ID) String id,
       @RequestBody @Valid UpdateRequest updateRequest) {
-    LOG.debug("Enter updateCategory,id is {}, update request is {}.", id, updateRequest.toString());
+    LOG.info("Enter. CategoryId: {}, update request: {}.", id, updateRequest);
 
     CategoryView result = categoryService.updateCategory(id, updateRequest.getVersion(),
         updateRequest.getActions());
 
-    LOG.debug("End updateCategory, updated Category is {}.", result.toString());
+    LOG.info("Exit. CategoryId: {}.", result.getId());
+    LOG.trace("Updated category: {}.", result);
 
     return result;
   }
@@ -122,9 +122,10 @@ public class CategoryController {
    */
   @GetMapping(Router.CATEGORY_WITH_ID)
   public CategoryView getCategoryById(@PathVariable(value = Router.CATEGORY_ID) String id) {
-    LOG.debug("Enter getCategoryById, id is {}.", id);
+    LOG.info("Enter. CategoryId: {}.", id);
     CategoryView category = categoryService.getCategoryById(id);
-    LOG.debug("End getCategoryById, get category: {}.", category.toString());
+    LOG.info("Exit. CategoryId: {}.", category.getId());
+    LOG.trace("Category: {}.", category);
     return category;
   }
 
@@ -135,11 +136,11 @@ public class CategoryController {
    */
   @GetMapping(Router.CATEGORY_ROOT)
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions query) {
-    LOG.debug("Enter queryCategories, query parameters: {}.", query.toString());
-
+    LOG.info("Enter. Query parameters: {}.", query);
     PagedQueryResult<CategoryView> result = categoryService.queryCategories(query);
 
-    LOG.debug("End queryCategories, query result is: {}.", result.toString());
+    LOG.info("Exit. Result count: {}.", result.getCount());
+    LOG.trace("Query result: {}.", result);
 
     return result;
   }

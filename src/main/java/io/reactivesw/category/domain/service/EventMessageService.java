@@ -23,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class EventMessageService {
+
   /**
    * Logger.
    */
@@ -68,7 +69,7 @@ public class EventMessageService {
 
     EventMessage savedMessage = eventMessageRepository.save(message);
 
-    LOG.debug("End. EventId: {}.", savedMessage.getId());
+    LOG.debug("Exit. EventId: {}.", savedMessage.getId());
   }
 
 

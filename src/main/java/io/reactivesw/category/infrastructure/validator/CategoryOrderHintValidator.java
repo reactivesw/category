@@ -34,12 +34,12 @@ public final class CategoryOrderHintValidator {
   public static void validateEmptyAndNumeric(SetOrderHint setOrderHint) {
     if (StringUtils.isEmpty(setOrderHint.getPreviousOrderHint()) || !NumberUtils
         .isNumber(setOrderHint.getPreviousOrderHint())) {
-      LOGGER.debug("Previous order hint  must be number.");
+      LOGGER.debug("Previous order hint must be number.");
       throw new ParametersException("Previous order hint must be number");
     }
     if (!StringUtils.isEmpty(setOrderHint.getNextOrderHint()) && !NumberUtils
         .isNumber(setOrderHint.getNextOrderHint())) {
-      LOGGER.debug("Next order hint  must be number.");
+      LOGGER.debug("Next order hint must be number.");
       throw new ParametersException("Next order hint must be number");
     }
   }

@@ -32,8 +32,13 @@ public class HealthController {
    */
   @GetMapping(Router.CATEGORY_HELTH_CHECK)
   public String healthCheck() {
-    LOG.debug("Enter healthCheck.");
+    LOG.info("Enter.");
 
-    return serviceName + ", system time: " + System.currentTimeMillis();
+    Long currentTime = System.currentTimeMillis();
+
+    LOG.info("Exit. Service name: {}, current time: {}.", serviceName,
+        currentTime);
+    return serviceName + ", system time: " + currentTime;
+
   }
 }

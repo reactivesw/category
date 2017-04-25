@@ -18,6 +18,8 @@ import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.NotExistException;
 import io.reactivesw.model.Reference;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +27,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Category service.
@@ -68,7 +68,7 @@ public class CategoryService {
    * @return the category
    */
   public CategoryView createCategory(CategoryDraft categoryDraft) {
-    LOG.debug("Enter createCategory, CategoryDraft is {}.", categoryDraft.toString());
+    LOG.debug("Enter. Category Draft: {}.", categoryDraft);
 
     String parentId = getParentId(categoryDraft);
     List<Category> sameRootCategories = categoryRepository.queryCategoryByParent(parentId);
@@ -82,7 +82,8 @@ public class CategoryService {
 
     CategoryView categoryView = CategoryMapper.toModel(savedEntity);
 
-    LOG.debug("End createCategory, new CategoryEntity is: {}.", categoryView.toString());
+    LOG.debug("Exit. New CategoryId: {}.", categoryView.getId());
+    LOG.trace("New category: {}.", categoryView);
 
     return categoryView;
   }
@@ -111,7 +112,8 @@ public class CategoryService {
 
     categoryRepository.delete(totalCategories);
 
-    LOG.debug("Exit. Deleted CategoryId: {}.", result);
+    LOG.debug("Exit. Deleted category count: {}.", result.size());
+    LOG.trace("Deleted category: {}.", result);
     return result;
   }
 
@@ -124,8 +126,8 @@ public class CategoryService {
    * @return the category
    */
   public CategoryView updateCategory(String id, Integer version, List<UpdateAction> actions) {
-    LOG.debug("Enter updateCategory, id is {}, version is {}, update action is {}.",
-        id, version, actions);
+    LOG.debug("Enter. CategoryId: {}, version: {}, actions: {}.", id,
+        version, actions);
 
     Category entity = getById(id);
     CategoryVersionValidator.validate(entity, version);
@@ -134,7 +136,8 @@ public class CategoryService {
     //TODO send message, if slug be updated
     CategoryView result = CategoryMapper.toModel(updatedEntity);
 
-    LOG.debug("End updateCategory, updated Category is {}.", result);
+    LOG.debug("Exit. CategoryId: {}.", id);
+    LOG.trace("Updated category: {}.", result);
     return result;
   }
 
@@ -146,13 +149,14 @@ public class CategoryService {
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   public CategoryView getCategoryById(String id) {
-    LOG.debug("Enter getCategoryById, id is {}.", id);
+    LOG.debug("Enter. CategoryId: {}.", id);
 
     Category entity = getById(id);
 
     CategoryView result = CategoryMapper.toModel(entity);
 
-    LOG.debug("End getCategoryById, get category is: {}.", result.toString());
+    LOG.debug("Exit. CategoryId: {}.", result.getId());
+    LOG.trace("Category: {}.", result);
 
     return result;
   }
@@ -165,14 +169,13 @@ public class CategoryService {
    * @return the paged query result
    */
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions queryConditions) {
-    LOG.debug("Enter queryCategories, QueryConditions is: {}.", queryConditions.toString());
-
+    LOG.debug("Enter. Query conditions: {}.", queryConditions);
     List<Category> entities = categoryRepository.findAll();
 
     List<CategoryView> result = CategoryMapper.toModel(entities);
 
-    LOG.debug("End queryCategories, get Categories: {}.", result);
-
+    LOG.debug("Exit. Queried categories count: {}.", result.size());
+    LOG.trace("Categories: {}.", result);
     PagedQueryResult<CategoryView> pagedQueryResult = new PagedQueryResult<>();
     pagedQueryResult.setResults(result);
     pagedQueryResult.setCount(result.size());
@@ -259,17 +262,17 @@ public class CategoryService {
    * @throws NotExistException if the can not find CategoryEntity by the id
    */
   private Category getById(String id) {
-    LOG.debug("Enter getById, id is {}.", id);
+    LOG.debug("Enter. Id: {}.", id);
 
     Category categoryEntity = categoryRepository.findOne(id);
 
     if (categoryEntity == null) {
       LOG.debug("Fail getById, can not find category by id: {}.", id);
-      throw new NotExistException("can not find category by id:" + id);
+      throw new NotExistException("Can not find category by id:" + id);
     }
 
-    LOG.debug("End getById, id is {}, get CategoryEntity: {}.",
-        id, categoryEntity.toString());
+    LOG.debug("Exit. Id: {}.", id);
+    LOG.trace("Category: {}.", id, categoryEntity);
     return categoryEntity;
   }
 
