@@ -64,16 +64,27 @@ public final class CategoryNameValidator {
   public static void validateEqual(LocalizedString name, List<Category> sameRootCategories) {
     List<LocalizedStringValue> categoryNames =
         CategoryUtils.getAllCategoryNames(sameRootCategories);
-    Map<String, String> localizedName = name.getLocalized();
-    for (Map.Entry entry : localizedName.entrySet()) {
-      String key = entry.getKey().toString();
-      String value = entry.getValue().toString();
-      for (LocalizedStringValue categoryName : categoryNames) {
-        if (key.equals(categoryName.getLanguage()) && value.equals(categoryName.getText())) {
-          LOG.debug("Can not create category with same name: {}, key: {}.", value, key);
-          throw new AlreadyExistException("Can not create category with same name.");
-        }
-      }
+
+    categoryNames.stream().forEach(entry -> validateEqual(entry, name));
+  }
+
+  /**
+   * Equal validate.
+   *
+   * @param localizedStringEntry categoryName
+   * @param name the name
+   */
+  private static void validateEqual(LocalizedStringValue localizedStringEntry,
+      LocalizedString name) {
+    Predicate<Map.Entry<String, String>> entryPredicate = (entry) ->
+        entry.getKey().toString().equals(localizedStringEntry.getLanguage().toString()) && entry
+            .getValue().toString().equals(localizedStringEntry.getText().toString());
+    boolean result = name.getLocalized().entrySet().stream().anyMatch(entryPredicate);
+    if (result) {
+      LOG.debug("Can not create category with same name: {}, key: {}.",
+          localizedStringEntry.getText(),
+          localizedStringEntry.getLanguage());
+      throw new AlreadyExistException("Can not create category with same name.");
     }
   }
 }
