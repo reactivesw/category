@@ -3,14 +3,7 @@ package io.reactivesw.category.domain.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * The value of localizedString.
@@ -19,10 +12,6 @@ import javax.persistence.Table;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class LocalizedStringValue {
-
-  /**
-   * Id.
-   */
 
   /**
    * Language.
