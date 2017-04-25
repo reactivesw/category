@@ -1,6 +1,7 @@
 package io.reactivesw.category.domain.service;
 
 import com.google.common.collect.Lists;
+
 import io.reactivesw.category.application.model.CategoryDraft;
 import io.reactivesw.category.application.model.CategoryView;
 import io.reactivesw.category.application.model.PagedQueryResult;
@@ -16,7 +17,9 @@ import io.reactivesw.category.infrastructure.validator.CategoryVersionValidator;
 import io.reactivesw.exception.AlreadyExistException;
 import io.reactivesw.exception.NotExistException;
 import io.reactivesw.model.Reference;
+
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -269,7 +272,7 @@ public class CategoryService {
     }
 
     LOG.debug("Exit. Id: {}.", id);
-    LOG.trace("Category: {}", id, categoryEntity);
+    LOG.trace("Category: {}.", id, categoryEntity);
     return categoryEntity;
   }
 
