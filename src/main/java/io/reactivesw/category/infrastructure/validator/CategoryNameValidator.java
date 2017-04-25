@@ -65,7 +65,7 @@ public final class CategoryNameValidator {
     List<LocalizedStringValue> categoryNames =
         CategoryUtils.getAllCategoryNames(sameRootCategories);
 
-    categoryNames.stream().forEach(entry -> validteEqual(entry, name));
+    categoryNames.stream().forEach(entry -> validateEqual(entry, name));
   }
 
   /**
@@ -74,7 +74,7 @@ public final class CategoryNameValidator {
    * @param localizedStringEntry categoryName
    * @param name the name
    */
-  private static void validteEqual(LocalizedStringValue localizedStringEntry,
+  private static void validateEqual(LocalizedStringValue localizedStringEntry,
       LocalizedString name) {
     Predicate<Map.Entry<String, String>> entryPredicate = (entry) ->
         entry.getKey().toString().equals(localizedStringEntry.getLanguage().toString()) && entry
