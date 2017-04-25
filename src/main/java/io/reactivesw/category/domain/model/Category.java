@@ -69,7 +69,6 @@ public class Category {
   @CollectionTable(name = "category_name")
   private Set<LocalizedStringValue> name;
 
-
   /**
    * The slug.
    */
