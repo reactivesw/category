@@ -122,40 +122,99 @@ TODO
 | results | List\<T\> | All view model in this field. |
 | facets | Object | For now, this field is null. |
 
+### Reference
+
+| field name | field type | comments |
+|-|-|-|
+| typeId | String |  The typeId designates the type of the referenced resource (see the list of reference types below). |
+| id | String | required. The unique ID of the referenced resource. |
+
+example:
+
+```json
+{
+  "typeId": "category",
+  "id": "d1229e6f-2b79-441e-b419-180311e52754"
+}
+```
+
+### Reference Types
+
+* `cart` - Identifies a reference to a Cart.
+* `category` - Identifies a reference to a Category.
+* `payment` - Identifies a reference to a Payment.
+* `product` - Identifies a reference to a Product.
+* `product-type` - Identifies a reference to a ProductType.
+* `order` - Identifies a reference to an Order.
+
 ## API
 
 ### create category
 
-* Url : {category service url}/
-* method : POST
-* request body : category - CategoryDraft - required
-* response : CategoryView
+* Url: {category service url}/
+* method: POST
+* request body: category - CategoryDraft - required
+* response: CategoryView
+* payload sample:
+
+```json
+{
+  "name": {
+    "en": "testcategory"
+  },
+  "description": {
+    "en": "category named as clothes"
+  },
+  "slug": "testcategory"
+}
+```
+
+ps: name and slug should be unique.
 
 ### delete category
 
-* Url : {category service url}/{categoryId}
-* method : DELETE
-* request param : version - Integer - required
-* response : void
+* Url: {category service url}/{categoryId}
+* method: DELETE
+* request param: version - Integer - required
+* response: void
 
 ### update category
 
-* Url : {category service url}/{categoryId}
-* method : PUT
-* request body : updateRequest - UpdateRequest - required
-* response : CategoryView
+* Url: {category service url}/{categoryId}
+* method: PUT
+* request body: updateRequest - UpdateRequest - required
+* response: CategoryView
+* payload sample:
+
+```json
+{
+  "version": 1,
+  "actions": [
+    {
+      "action": "setName",
+      "name": {
+        "en": "Pro T-Shirt"
+      }
+    },
+    {
+      "action": "setSlug",
+      "slug": "f9779820-b282-4f62-8489-0d5ff1415a98"
+    }
+  ]
+}
+```
 
 ### get category by id
 
-* Url : {category service url}/{categoryId}
-* method : GET
-* response : CategoryView
+* Url: {category service url}/{categoryId}
+* method: GET
+* response: CategoryView
 
 ### query category
 
-* Url : {category service url}/
-* method : GET
-* request : query - QueryConditions - not required
-* response : PagedQueryResult\<CategoryView\>
+* Url: {category service url}/
+* method: GET
+* request: query - QueryConditions - not required
+* response: PagedQueryResult\<CategoryView\>
 
 ps: For now, we have not completed paged query, so calling this api will return all category in result.
