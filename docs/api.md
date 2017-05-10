@@ -116,11 +116,11 @@ TODO
 
 | field name | field type | comments |
 |-|-|-|
-| offset | Integer | |
-| count | Integer | |
-| total | Integer | |
-| results | List\<T\> | |
-| facets | Object | |
+| offset | Integer | For now, this field is null. |
+| count | Integer | Result count. |
+| total | Integer | For now, this field is null. |
+| results | List\<T\> | All view model in this field. |
+| facets | Object | For now, this field is null. |
 
 ## API
 
@@ -157,3 +157,5 @@ TODO
 * method : GET
 * request : query - QueryConditions - not required
 * response : PagedQueryResult\<CategoryView\>
+
+ps: For now, we have not completed paged query, so calling this api will return all category in result.
