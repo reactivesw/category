@@ -31,7 +31,7 @@ TODO
 | name | LocalizedString | |
 | description | LocalizedString | |
 | slug | String | |
-| ancestors | List\<Reference\> | |
+| ancestors | List\<Reference\> |  Contains the parent path towards the root category. From the root category to the parent path by order. |
 | parent | Reference | |
 | orderHint | String | |
 | externalId | String | |
