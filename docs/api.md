@@ -154,7 +154,14 @@ example:
 * Url: {category service url}/
 * method: POST
 * request body: category - CategoryDraft - required
-* response: CategoryView
+* response:
+  
+  | http code | body | comment |
+  |---|---|---|
+  | 200 | CategoryView | create success and return created category |
+  | 400 | null | category is null, can not create this category |
+  | 409 | null | can not create category when the name is already exist |
+
 * payload sample:
 
 ```json
@@ -176,14 +183,26 @@ ps: name and slug should be unique.
 * Url: {category service url}/{categoryId}
 * method: DELETE
 * request param: version - Integer - required
-* response: void
+* response:
+
+  | http code | body | comment |
+  |---|---|---|
+  | 200 | null | find and delete this category success |
+  | 404 | null | can not find this category |
 
 ### update category
 
 * Url: {category service url}/{categoryId}
 * method: PUT
 * request body: updateRequest - UpdateRequest - required
-* response: CategoryView
+* response:
+
+  | http code | body | comment |
+  |---|---|---|
+  | 200 | CategoryView | update category success |
+  | 404 | null | can not find this category |
+  | 409 | null | version not match |
+
 * payload sample:
 
 ```json
@@ -208,7 +227,12 @@ ps: name and slug should be unique.
 
 * Url: {category service url}/{categoryId}
 * method: GET
-* response: CategoryView
+* response:
+
+  | http code | body | comment |
+  |---|---|---|
+  | 200 | CategoryView | find category success |
+  | 404 | null | can not find this category |
 
 ### query category
 
@@ -216,5 +240,19 @@ ps: name and slug should be unique.
 * method: GET
 * request: query - QueryConditions - not required
 * response: PagedQueryResult\<CategoryView\>
+
+if category is null, will return like this:
+
+```json
+{
+
+    "offset": null,
+    "count": 0,
+    "total": null,
+    "results": [],
+    "facets": null
+
+}
+```
 
 ps: For now, we have not completed paged query, so calling this api will return all category in result.
