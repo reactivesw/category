@@ -241,17 +241,51 @@ ps: name and slug should be unique.
 * request: query - QueryConditions - not required
 * response: PagedQueryResult\<CategoryView\>
 
-if category is null, will return like this:
+#### Special Note
+
+1. if category is null, will return like this:
 
 ```json
 {
-
     "offset": null,
     "count": 0,
     "total": null,
     "results": [],
     "facets": null
+}
+```
 
+2. category order in result
+
+Because there is an orderHint in category, the result will sort by the orderHint, smaller is prioritized.
+For example:
+ 
+```json
+{
+  "offset": null,
+  "count": 3,
+  "total": null,
+  "results": [
+    {
+      "name": {
+        "en": "testcategory1"
+      },
+      "orderHint": 0.01
+    },
+    {
+      "name": {
+        "en": "testcategory2"
+      },
+      "orderHint": 0.02
+    },
+    {
+      "name": {
+        "en": "testcategory3"
+      },
+      "orderHint": 0.03
+    }
+  ],
+  "facets": null
 }
 ```
 
