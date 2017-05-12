@@ -95,8 +95,8 @@ TODO
 | field name | field type | comments |
 |-|-|-|
 | action | String | required, set as `setOrderHint` |
-| previousOrderHint | String | required, NotNull |
-| nextOrderHint | String | if category is changed to be the last one, this paremeter should be empty, otherwise, required |
+| previousOrderHint | String | required, NotNull, the orderHint of previous category, when set to the first one, the value will be 0 |
+| nextOrderHint | String | the orderHint of next category. if category is changed to be the last one, this value should be empty, otherwise, required |
 
 #### SetParent
 
