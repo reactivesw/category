@@ -67,7 +67,7 @@ class CategoryServiceTest extends Specification {
         given:
         QueryConditions queryConditions = new QueryConditions()
         List<Category> entities = Lists.newArrayList(categoryEntity)
-        categoryRepository.findAll() >> entities
+        categoryRepository.findOrderByOrderHint() >> entities
 
         when:
         def result = categoryService.queryCategories(queryConditions)

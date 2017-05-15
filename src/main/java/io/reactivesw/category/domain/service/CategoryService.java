@@ -170,7 +170,7 @@ public class CategoryService {
    */
   public PagedQueryResult<CategoryView> queryCategories(QueryConditions queryConditions) {
     LOG.debug("Enter. Query conditions: {}.", queryConditions);
-    List<Category> entities = categoryRepository.findAll();
+    List<Category> entities = categoryRepository.findOrderByOrderHint();
 
     List<CategoryView> result = CategoryMapper.toModel(entities);
 
