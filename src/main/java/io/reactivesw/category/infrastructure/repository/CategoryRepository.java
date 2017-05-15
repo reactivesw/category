@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface CategoryRepository extends JpaRepository<Category, String>,
     JpaSpecificationExecutor {
+
   /**
    * Query category ids by ancestor id list.
    *
@@ -29,4 +30,12 @@ public interface CategoryRepository extends JpaRepository<Category, String>,
    * @return the list
    */
   List<Category> queryCategoryByParent(String parentId);
+
+  /**
+   * Find order by order hint list.
+   *
+   * @return the list
+   */
+  @Query("select c from Category c order by c.orderHint asc")
+  List<Category> findOrderByOrderHint();
 }
